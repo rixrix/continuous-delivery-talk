@@ -1,0 +1,13 @@
+#
+# IDE cruft
+#
+.idea
+*.iml
+/host/local.properties
+/*.sublime-project
+/*.sublime-workspace
+
+#
+# OS cruft
+#
+.DS_Store
