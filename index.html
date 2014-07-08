@@ -75,7 +75,6 @@
 					</section>
 				</section>
 
-
 				<section>
 					<h2>Our front end zoo</h2>
 					<p>
@@ -112,8 +111,8 @@
 
                 <section>
                     <section>
-                        <h2>Dev/CI Pipeline</h2>
-                        <h6>Dev - Testing - Deployment - UAT - Production/Staging - Monitoring</h6>
+                        <h2>Continuous Delivery Pipeline</h2>
+                        <h6>Team - Version Control - Build - Test - CI/Deployment - UAT/QA - Production</h6>
                     </section>
                     <section>
                         <h2>Pre-Planning</h2>
@@ -134,12 +133,22 @@
                         <p>image flow here</p>
                     </section>
                     <section>
+                        <h2>Build (local)</h2>
+                        compile Ts, Stylus, AMDs
+                    </section>
+                    <section>
                         <h2>Testing</h2>
+                            <p>Transpile and Dev time</p>
+                            <p>3rd party</p>
+                            <p>- smoke tester</p>
+                            <p>- some smoke GIFs</p>
+                    </section>
+                    <section>
+                        <h2>CI w/ Codeship.IO</h2>
                         <ul>
-                            <li>Transpile and Dev time</li>
-                            <li>3rd party</li>
-                            <li>- smoke tester</li>
-                            <li>- some smoke GIFs</li>
+                            <li>Watches bitbucket repo</li>
+                            <li>Deploy to Dev or Production</li>
+                            <li>Free and paid options</li>
                         </ul>
                     </section>
                     <section>
@@ -147,20 +156,14 @@
                         <ul>
                             <li>work on local branch</li>
                             <li>push to master for QA/Others to test</li>
-                        </ul>
-                    </section>
-                    <section>
-                        <h2>CI w/ Codeship.IO</h2>
-                        <ul>
-                            <li>Watches repo</li>
-                            <li>Deploy to Dev or Production</li>
-                            <li>Free and paid options</li>
+                            <li>Master branch > for demo</li>
+                            <li>Production branch > for prod release</li>
                         </ul>
                     </section>
                     <section>
                         <h2>Azure</h2>
                         <ul>
-                            <li>dump to CDN</li>
+                            <li>Upload to CDN</li>
                             <li>No IIS/Apache/Nginx</li>
                             <li>all assets</li>
                         </ul>
@@ -172,33 +175,31 @@
                             <li>server locations: asia, uk, us, etc ???</li>
                         </ul>
                     </section>
+
+                    <!-- ending/summary -->
+                    <section>
+                        <h2>Importance of Automation</h2>
+                        <p>save time</p>
+                        <p>focus on important tasks</p>
+                        <p>faster development</p>
+                    </section>
+
+                    <section>
+                        <h2>Continuous Improvement</h2>
+                        <p>pair programming</p>
+                        <p>build good working relationship</p>
+                        <p>refactor early, refactor often, small stuff</p>
+                        <p>good developer experience - eg. the bug fixer</p>
+                    </section>
+
+                    <section>
+                        <h2>Summary</h2>
+                    </section>
+
+                    <section>
+                        <h2>End</h2>
+                    </section>
                 </section>
-
-                <section>
-					<h2>Works in Mobile Safari</h2>
-					<p>
-						Try it out! You can swipe through the slides and pinch your way to the overview.
-					</p>
-				</section>
-
-				<section>
-					<h2>Marvelous Unordered List</h2>
-					<ul>
-						<li>No order here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-					</ul>
-				</section>
-
-				<section>
-					<h2>Fantastic Ordered List</h2>
-					<ol>
-						<li>One is smaller than...</li>
-						<li>Two is smaller than...</li>
-						<li>Three!</li>
-					</ol>
-				</section>
 
 				<section data-markdown>
 					<script type="text/template">
@@ -229,26 +230,6 @@
 						<a href="?transition=fade#/transitions">Fade</a> -
 						<a href="?transition=none#/transitions">None</a> -
 						<a href="?#/transitions">Default</a>
-					</p>
-				</section>
-
-				<section id="themes">
-					<h2>Themes</h2>
-					<p>
-						Reveal.js comes with a few themes built in: <br>
-						<a href="?#/themes">Default</a> -
-						<a href="?theme=sky#/themes">Sky</a> -
-						<a href="?theme=beige#/themes">Beige</a> -
-						<a href="?theme=simple#/themes">Simple</a> -
-						<a href="?theme=serif#/themes">Serif</a> -
-						<a href="?theme=night#/themes">Night</a> <br>
-						<a href="?theme=moon#/themes">Moon</a> -
-						<a href="?theme=solarized#/themes">Solarized</a>
-					</p>
-					<p>
-						<small>
-							* Theme demos are loaded after the presentation which leads to flicker. In production you should load your theme in the <code>&lt;head&gt;</code> using a <code>&lt;link&gt;</code>.
-						</small>
 					</p>
 				</section>
 
