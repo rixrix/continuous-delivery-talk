@@ -24,19 +24,30 @@
 	<body>
 
 		<div class="reveal">
-
-			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<section>
 					<h1>Booktrack application structure</h1>
 					<h3>Everything is complex</h3>
 				</section>
 
-				<section>
-					<h2>Funny gif</h2>
-				</section>
+                <section>
+                    <section>
+                        <h1>Booktrack</h1>
+                        <h2>Soundtracks for books www.booktrack.com</h2>
+                        <p>Add material from Paul's presentation</p>
+                        <h3>Presenters</h3>
+                    </section>
+                    <section>
+                        <h3>Front end developers at Booktrack</h3>
+                        <ul>
+                            <li>Konstantin Raev (add photo)</li>
+                            @bestander_nz (add github)
+                            <li>Richard Sentino (add photo)</li>
+                            @rixrix (add github)
+                        </ul>
+                    </section>
+                </section>
 
-				<!-- Example of nested vertical slides -->
 				<section>
 					<section>
 						<h2>Our front end stack</h2>
@@ -47,65 +58,322 @@
                             <li>Angular.js</li>
                             <li>many more 3rd party libs</li>
                         </ul>
-						<p>
-							Slides can be nested inside of other slides,
-							try pressing <a href="#" class="navigate-down">down</a>.
-						</p>
-						<a href="#" class="image navigate-down">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-						</a>
+					</section>
+                    <section>
+                        <h3>Angular.js</h3>
+                        <img src="images/angular_example.png">
+                    </section>
+                    <section>
+						<h3>Typescript</h3>
+                        <img src="images/typescript_example.png">
+					</section>
+                    <section>
+						<h3>Typescript + Angular</h3>
+                        <img src="images/typescrit_angular_webstorm.png">
 					</section>
 					<section>
-						<h2>This is an optional level for Typescript</h2>
-						<p>Press down or up to navigate.</p>
+						<h2>Stylus</h2>
+                        <img src="images/stylus.png">
 					</section>
 					<section>
-						<h2>This is an optional level for Stylus & SASS</h2>
-						<p>Cornify</p>
-						<a class="test" href="http://cornify.com">
-							<img width="280" height="326" src="https://s3.amazonaws.com/hakim-static/reveal-js/cornify.gif" alt="Unicorn">
-						</a>
-					</section>
-					<section>
-						<h2>Basement Level 3</h2>
-						<p>That's it, time to go back up.</p>
-						<a href="#/2" class="image">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow" style="-webkit-transform: rotate(180deg);">
-						</a>
+						<h2>Require.js & Uglify.js</h2>
+                        <img src="images/require.png">
 					</section>
 				</section>
 
 				<section>
-					<h2>Our front end zoo</h2>
-					<p>
-						Do we need to mention that we have 8 client side applications?
-                        We can to show the complexity of stuff we do.
-                        But we should not because it does not add any value to the CI stuff, the projects are deployed separately
-					</p>
+					<h2>How to compile that?</h2>
+                    <p>funny image</p>
+				</section>
+
+				<section>
+					<h2>Grunt.js</h2>
+                    <img src="images/grunt.png">
+				</section>
+
+				<section>
+					<h2>Problem?</h2>
+                    <pre class="stretch"><code data-trim>
+module.exports = function (grunt) {
+
+    var config = {
+        typescript: {
+            main: {
+                src: ['app/**/*.ts'],
+                dest: '.tmp', // typescript is always compiled here
+                options: {
+                    module: 'amd',
+                    target: 'es5',
+                    sourcemap: "<%= sourcemap %>"
+                }
+            },
+            test: {
+                src: ['test/**/*.ts'],
+                dest: '.tmp', // typescript is always compiled here
+                options: {
+                    module: 'amd',
+                    target: 'es5',
+                    sourcemap: "<%= sourcemap %>"
+                }
+            }
+        },
+        requirejs: {
+            compile: {
+                options: {
+                    useStrict: true,
+                    removeCombined: true,
+                    baseUrl: '.tmp/app',
+                    optimize: "uglify2",
+                    uglify2: {
+                        mangle: true
+                    },
+                    wrap: {
+                        start: "'use strict';",
+                        end: ""
+                    },
+                    modules: [
+                        {
+                            name: 'libs',
+                            include: ['almond', 'angular', 'angularSanitize', 'angulartics', 'createDialog',
+                                'studioPlayers', 'iscroll', 'zepto', 'snaprfx', 'buzz', 'slider',
+                                'disqus', 'tinyMce', 'angularUuid', 'diffPatch'],
+                            create: true,
+                            override: { // TODO better uglify modules before concatenating
+                                optimize: "none",
+                                uglify2: {
+                                    mangle: false
+                                },
+                                wrap: {
+                                    // some libs don't work well with use strict pragma, disabling it for 3rd parties
+                                    start: "",
+                                    end: ""
+                                }
+                            }
+                        },
+                        {
+                            removeCombined: true,
+                            name: 'mandrill',
+                            include: ['bootstrap'],
+                            exclude: ['libs'],
+                            create: true,
+                            insertRequire: ['bootstrap']
+                        }
+                    ],
+                    paths: {
+                        almond: '../../node_modules/grunt-requirejs/node_modules/almond/almond',
+                        angular: '../../components/angular/angular.min',
+                        angularSanitize: '../../components/angular/angular-sanitize.min',
+                        angulartics: '../../components/angulartics/dist/angulartics.min',
+                        createDialog: '../../components/angularjs-modal-service/src/createDialog',
+                        studioPlayers: '../../components/studio/build/studio',
+                        iscroll: '../../components/iscroll/dist/iscroll-probe-min',
+                        zepto: '../../components/zepto/zepto.min',
+                        snaprfx: '../../components/snapr/build/snaprfx.min',
+                        buzz: '../../components/buzz/buzz',
+                        slider: '../../components/angular-slider/angular-slider.min',
+                        disqus: '../../components/angular-disqus/angular-disqus.min',
+                        templates: 'mandrill-templates',
+                        config: 'config',
+                        tinyMce: '../../components/bower-cpa-tinymce/tinymce.min',
+                        angularUuid: '../../components/angular-uuid/uuid.min',
+                        diffPatch: '../../components/google-diff-match-patch-js/diff_match_patch'
+                    },
+                    shim: {
+                        almond: {'exports': ['requirejs', 'require', 'define']},
+                        angular: {'exports': 'angular'},
+                        angularSanitize: {'deps': ['angular']},
+                        angulartics: {deps: ['angular'], 'exports': 'angulartics'},
+                        createDialog: {deps: ['angular']},
+                        studioPlayers: {'exports': 'Booktrack'},
+                        zepto: {'exports': '$'},
+                        snaprfx: {deps: ['zepto'], 'exports': 'SnaprFX'},
+                        buzz: {'exports': 'buzz'},
+                        slider: {deps: ['angular']},
+                        disqus: {deps: ['angular']},
+                        templates: {deps: ['angular']},
+                        config: {deps: ['angular']},
+                        tinyMce: {
+                            'exports': 'tinyMCE',
+                            init: function () {
+                                this.tinyMCE.DOM.events.domLoaded = true;
+                                return this.tinyMCE;
+                            }
+                        },
+                        angularUuid: {deps: ['angular']},
+                        diffPatch: {'exports': 'diff_match_patch'}
+                    },
+                    dir: "<%= dest %>/app"
+                }
+            }
+        },
+        sass: {
+            main: {
+                options: {
+                    // sourcemap: true, // TODO waiting for Sass 3.3.0 to be stable
+                    style: "<%= cssBuildStyle %>"
+                },
+                files: {
+                    "<%= dest %>/app/index.css": "app/styles/index.scss",
+                    "<%= dest %>/app/icons.css": "app/icons/icons.scss"
+                }
+
+            }
+        },
+        imageEmbed: {
+            main: {
+                src: [ "<%= dest %>/app/icons.css" ],
+                dest: "<%= dest %>/app/icons.css",
+                options: {
+                    deleteAfterEncoding: true,
+                    baseDir: ''
+                }
+            }
+        },
+        smushit: {
+            dynamic: {
+                files: [
+                    {
+                        expand: true,
+                        src: ['app/**/*.{png,jpg,jpeg,gif}'],
+                        dest: 'app'
+                    }
+                ]
+            }
+        },
+        htmlbuild: {
+            main: {
+                src: '<%= dest %>/index.html',
+                dest: '<%= dest %>',
+                options: {
+                    data: {
+                        version: '<%= buildVersion %>',
+                        baseUrl: "" // for local deployments all the libs are in the same directory with index.html but
+                        on
+                                CDN
+                        it
+                                is
+                        different
+                    },
+                    scripts: {
+                        libs: {
+                            files: '<%= dest %>/<%= baseUrl %>/app/libs.js'
+                        }
+                    }
+                }
+            }
+        },
+        ngtemplates: {
+            main: {
+                options: {
+                    htmlmin: {
+                        collapseBooleanAttributes: true,
+                        collapseWhitespace: true,
+                        removeAttributeQuotes: true,
+                        removeComments: true, // Only if you don't use comment directives!
+                        removeEmptyAttributes: true,
+                        removeRedundantAttributes: false,
+                        removeScriptTypeAttributes: true,
+                        removeStyleLinkTypeAttributes: true
+                    },
+                    module: 'Booktrack.Mandrill.Templates',
+                    standalone: true
+                },
+                cwd: 'app',
+                src: ['**/*.html', '!auth/popups/*.html', '!social/standalone-disqus-board/*.html',
+                    '!help/external-iframe/*.html'],
+                dest: '.tmp/app/mandrill-templates.js'
+            }
+        }
+
+    };
+};
+                    </code></pre>
 				</section>
 
                 <section>
+                    <h2>Gulp.js</h2>
+                    <pre class="stretch"><code>
+var rename = require("gulp-rename");
+var replace = require('gulp-replace');
+var karma = require('node-karma-wrapper');
+var aKarmaTestServer = karma({ configFile: './test/karma.conf.js'});
+var stylusPlugin = require('gulp-stylus');
+
+gulp.task('copy-config', function () {
+    return gulp.src('src/config.js')
+        .pipe(rename("config.js"))
+        .pipe(replace(/@@appPath/g, '/app'))
+        .pipe(replace(/@@cdnUri/g, 'http://cdn.booktrack.com'))
+        .pipe(replace(/@@version/g, 'dev'))
+        .pipe(gulp.dest('/build'));
+});
+
+gulp.task('compile-stylus-dev', function(){
+    return gulp.src(['src/**/*.styl'])
+        .pipe(watching ? plumber() : gutil.noop())
+        .pipe(stylusPlugin({
+            use: nib(),
+            "include css": true
+        }))
+        .pipe(gulp.dest('/build'));
+});
+
+gulp.task('run-karma', ['copy-config'], function (cb) {
+    aKarmaTestServer.simpleRun(function () {
+        cb();
+    });
+});
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>Deployment steps</h2>
+                    <ol>
+                        <li>Compile and minify stuff with Gulp</li>
+                        <li>Put it in a public storage container</li>
+                        <li>Set up CDN to speed up content delivery</li>
+                        <li>???</li>
+                        <li>PROFIT</li>
+                    </ol>
+                </section>
+
+                <section>
                     <section>
-                        <h2>Build tasks</h2>
+                        <h2>Put it in storage and distribute via CDN</h2>
                         <ul>
-                            <li>Grunt</li>
-                            <li>then gulp...</li>
+                            <li>Amazon CloudFront</li>
+                            <li>Windows Azure</li>
+                            <li>MaxCDN</li>
+                            <li>Akamai</li>
                         </ul>
                     </section>
+
                     <section>
-                        <h2>Started with Grint</h2>
+                        <h2>We use azure</h2>
+                        <ul>
+                            <li>Already using it for back end</li>
+                            <li>Good pricing</li>
+                            <li>Good performance</li>
+                            <li>Nice Node.js API https://github.com/Azure/azure-sdk-for-node</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Only had to build a Gulp/Grunt plugin for azure blob storage upload</h2>
+                        <p>https://github.com/bestander/grunt-azure-cdn-deploy</p>
+                        <p>https://github.com/bestander/deploy-azure-cdn</p>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Importance of CDN</h2>
                     </section>
                     <section>
-                        <h2>which grew up too and turned into configuration hlee</h2>
+                        <h2>Importance of Minification of scripts and images</h2>
                     </section>
                     <section>
-                        <h2>Gulp was an improvement in all areas</h2>
-                    </section>
-                    <section>
-                        <h2>Except typescript compilation</h2>
-                        <p>
-                            funny gif here
-                        </p>
+                        <h2>Importance of GZIP</h2>
                     </section>
                 </section>
 
@@ -196,22 +464,6 @@
                     </section>
                 </section>
 
-				<section data-markdown>
-					<script type="text/template">
-						## Markdown support
-
-						For those of you who like that sort of thing. Instructions and a bit more info available [here](https://github.com/hakimel/reveal.js#markdown).
-
-						```
-						<section data-markdown>
-						  ## Markdown support
-
-						  For those of you who like that sort of thing.
-						  Instructions and a bit more info available [here](https://github.com/hakimel/reveal.js#markdown).
-						</section>
-						```
-					</script>
-				</section>
 
 				<section id="transitions">
 					<h2>Transition Styles</h2>
@@ -296,27 +548,6 @@ Reveal.addEventListener( 'customevent', function() {
 				</section>
 
 				<section>
-					<h2>Pretty Code</h2>
-					<pre><code data-trim contenteditable>
-function linkify( selector ) {
-  if( supports3DTransforms ) {
-
-    var nodes = document.querySelectorAll( selector );
-
-    for( var i = 0, len = nodes.length; i &lt; len; i++ ) {
-      var node = nodes[i];
-
-      if( !node.className ) {
-        node.className += ' roll';
-      }
-    }
-  }
-}
-					</code></pre>
-					<p>Courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
-				</section>
-
-				<section>
 					<h2>Intergalactic Interconnections</h2>
 					<p>
 						You can link between slides internally,
@@ -362,15 +593,6 @@ function linkify( selector ) {
 				</section>
 
 				<section>
-					<h2>Export to PDF</h2>
-					<p>Presentations can be <a href="https://github.com/hakimel/reveal.js#pdf-export">exported to PDF</a>, below is an example that's been uploaded to SlideShare.</p>
-					<iframe id="slideshare" src="http://www.slideshare.net/slideshow/embed_code/13872948" width="455" height="356" style="margin:0;overflow:hidden;border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen> </iframe>
-					<script>
-						document.getElementById('slideshare').attributeName = 'allowfullscreen';
-					</script>
-				</section>
-
-				<section>
 					<h2>Take a Moment</h2>
 					<p>
 						Press b or period on your keyboard to enter the 'paused' mode. This mode is helpful when you want to take distracting slides off the screen
@@ -378,19 +600,6 @@ function linkify( selector ) {
 					</p>
 				</section>
 
-				<section>
-					<h2>Stellar Links</h2>
-					<ul>
-						<li><a href="http://slid.es">Try the online editor</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js">Source code on GitHub</a></li>
-						<li><a href="http://twitter.com/hakimel">Follow me on Twitter</a></li>
-					</ul>
-				</section>
-
-				<section>
-					<h1>THE END</h1>
-					<h3>BY Hakim El Hattab / hakim.se</h3>
-				</section>
 
 			</div>
 
@@ -419,9 +628,7 @@ function linkify( selector ) {
 				// Optional libraries used to extend on reveal.js
 				dependencies: [
 //					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-//					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-//					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-//					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'bower_components/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
 //					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
 //					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
 				]
