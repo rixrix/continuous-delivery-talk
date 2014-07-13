@@ -45,17 +45,19 @@
                 </section>
                 <section data-background="images/platforms.png">
                 </section>
-
-
+                <section>
+                    <p><img src="images/hypno.gif"></p>
+                    visit <a target="_blank" href="http://www.booktrack.com">www.booktrack.com</a>
+                </section>
 				<section>
 					<section>
 						<h2>Our front end stack</h2>
+                        <h4>defeating complexity with abstractions</h4>
                         <ul>
                             <li>Angular.js</li>
                             <li>Typescript</li>
-                            <li>SASS & Stylus</li>
-                            <li>Require.js</li>
-                            <li>many more 3rd party libs</li>
+                            <li>CSS Preprocessors</li>
+                            <li>Bower</li>
                         </ul>
 					</section>
                     <section>
@@ -87,254 +89,79 @@
 				</section>
 
                 <section>
-                    <h2>Optimized for download</h2>
-                    <img src="images/booktrack-min.png">
+                    <h2>Performance matters</h2>
+                    <img src="images/perf-matters.png">
+                    <a href="https://www.youtube.com/watch?v=7ubJzEi3HuA">https://www.youtube.com/watch?v=7ubJzEi3HuA</a>
+                </section>
+                <section>
+                    <h4>Bing experiment</h4>
+                    <img src="images/bingdata1.png">
+                </section>
+                <section>
+                    <section>
+                        <h2>Things we do to improve performance</h2>
+                        <ul>
+                            <li>Reduce download size of scripts, styles and images</li>
+                            <li>Bundle multiple files into one</li>
+                            <li>Eagerly download only content "above the fold"</li>
+                            <li>Use browser cache</li>
+                            <li>Use Content Delivery Network to server files from closest location</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <img src="images/booktrack-download.png">
+                    </section>
+                    <section>
+                        <img src="images/booktrack-min.png">
+                    </section>
+                    <section>
+                        <img src="images/aws-cloudfron-dyn-cdn.png">
+                    </section>
                 </section>
 
                 <section>
-					<h2>How to compile that?</h2>
+					<h2>How to do all this reliably?</h2>
+                    <p>funny image</p>
+				</section>
+
+                <section>
+					<h2>Using JavaScript and Node.js as CLI tool</h2>
                     <p>funny image</p>
 				</section>
 
 				<section>
-					<h2>Grunt.js</h2>
-                    <img src="images/grunt.png">
-				</section>
-
-				<section>
-					<h2>Problem?</h2>
-                    <pre class="stretch"><code data-trim>
-module.exports = function (grunt) {
-
-    var config = {
-        typescript: {
-            main: {
-                src: ['app/**/*.ts'],
-                dest: '.tmp', // typescript is always compiled here
-                options: {
-                    module: 'amd',
-                    target: 'es5',
-                    sourcemap: "<%= sourcemap %>"
-                }
-            },
-            test: {
-                src: ['test/**/*.ts'],
-                dest: '.tmp', // typescript is always compiled here
-                options: {
-                    module: 'amd',
-                    target: 'es5',
-                    sourcemap: "<%= sourcemap %>"
-                }
-            }
-        },
-        requirejs: {
-            compile: {
-                options: {
-                    useStrict: true,
-                    removeCombined: true,
-                    baseUrl: '.tmp/app',
-                    optimize: "uglify2",
-                    uglify2: {
-                        mangle: true
-                    },
-                    wrap: {
-                        start: "'use strict';",
-                        end: ""
-                    },
-                    modules: [
-                        {
-                            name: 'libs',
-                            include: ['almond', 'angular', 'angularSanitize', 'angulartics', 'createDialog',
-                                'studioPlayers', 'iscroll', 'zepto', 'snaprfx', 'buzz', 'slider',
-                                'disqus', 'tinyMce', 'angularUuid', 'diffPatch'],
-                            create: true,
-                            override: { // TODO better uglify modules before concatenating
-                                optimize: "none",
-                                uglify2: {
-                                    mangle: false
-                                },
-                                wrap: {
-                                    // some libs don't work well with use strict pragma, disabling it for 3rd parties
-                                    start: "",
-                                    end: ""
-                                }
-                            }
-                        },
-                        {
-                            removeCombined: true,
-                            name: 'mandrill',
-                            include: ['bootstrap'],
-                            exclude: ['libs'],
-                            create: true,
-                            insertRequire: ['bootstrap']
-                        }
-                    ],
-                    paths: {
-                        almond: '../../node_modules/grunt-requirejs/node_modules/almond/almond',
-                        angular: '../../components/angular/angular.min',
-                        angularSanitize: '../../components/angular/angular-sanitize.min',
-                        angulartics: '../../components/angulartics/dist/angulartics.min',
-                        createDialog: '../../components/angularjs-modal-service/src/createDialog',
-                        studioPlayers: '../../components/studio/build/studio',
-                        iscroll: '../../components/iscroll/dist/iscroll-probe-min',
-                        zepto: '../../components/zepto/zepto.min',
-                        snaprfx: '../../components/snapr/build/snaprfx.min',
-                        buzz: '../../components/buzz/buzz',
-                        slider: '../../components/angular-slider/angular-slider.min',
-                        disqus: '../../components/angular-disqus/angular-disqus.min',
-                        templates: 'mandrill-templates',
-                        config: 'config',
-                        tinyMce: '../../components/bower-cpa-tinymce/tinymce.min',
-                        angularUuid: '../../components/angular-uuid/uuid.min',
-                        diffPatch: '../../components/google-diff-match-patch-js/diff_match_patch'
-                    },
-                    shim: {
-                        almond: {'exports': ['requirejs', 'require', 'define']},
-                        angular: {'exports': 'angular'},
-                        angularSanitize: {'deps': ['angular']},
-                        angulartics: {deps: ['angular'], 'exports': 'angulartics'},
-                        createDialog: {deps: ['angular']},
-                        studioPlayers: {'exports': 'Booktrack'},
-                        zepto: {'exports': '$'},
-                        snaprfx: {deps: ['zepto'], 'exports': 'SnaprFX'},
-                        buzz: {'exports': 'buzz'},
-                        slider: {deps: ['angular']},
-                        disqus: {deps: ['angular']},
-                        templates: {deps: ['angular']},
-                        config: {deps: ['angular']},
-                        tinyMce: {
-                            'exports': 'tinyMCE',
-                            init: function () {
-                                this.tinyMCE.DOM.events.domLoaded = true;
-                                return this.tinyMCE;
-                            }
-                        },
-                        angularUuid: {deps: ['angular']},
-                        diffPatch: {'exports': 'diff_match_patch'}
-                    },
-                    dir: "<%= dest %>/app"
-                }
-            }
-        },
-        sass: {
-            main: {
-                options: {
-                    // sourcemap: true, // TODO waiting for Sass 3.3.0 to be stable
-                    style: "<%= cssBuildStyle %>"
-                },
-                files: {
-                    "<%= dest %>/app/index.css": "app/styles/index.scss",
-                    "<%= dest %>/app/icons.css": "app/icons/icons.scss"
-                }
-
-            }
-        },
-        imageEmbed: {
-            main: {
-                src: [ "<%= dest %>/app/icons.css" ],
-                dest: "<%= dest %>/app/icons.css",
-                options: {
-                    deleteAfterEncoding: true,
-                    baseDir: ''
-                }
-            }
-        },
-        smushit: {
-            dynamic: {
-                files: [
-                    {
-                        expand: true,
-                        src: ['app/**/*.{png,jpg,jpeg,gif}'],
-                        dest: 'app'
-                    }
-                ]
-            }
-        },
-        htmlbuild: {
-            main: {
-                src: '<%= dest %>/index.html',
-                dest: '<%= dest %>',
-                options: {
-                    data: {
-                        version: '<%= buildVersion %>',
-                        baseUrl: "" // for local deployments all the libs are in the same directory with index.html but
-                        on
-                                CDN
-                        it
-                                is
-                        different
-                    },
-                    scripts: {
-                        libs: {
-                            files: '<%= dest %>/<%= baseUrl %>/app/libs.js'
-                        }
-                    }
-                }
-            }
-        },
-        ngtemplates: {
-            main: {
-                options: {
-                    htmlmin: {
-                        collapseBooleanAttributes: true,
-                        collapseWhitespace: true,
-                        removeAttributeQuotes: true,
-                        removeComments: true, // Only if you don't use comment directives!
-                        removeEmptyAttributes: true,
-                        removeRedundantAttributes: false,
-                        removeScriptTypeAttributes: true,
-                        removeStyleLinkTypeAttributes: true
-                    },
-                    module: 'Booktrack.Mandrill.Templates',
-                    standalone: true
-                },
-                cwd: 'app',
-                src: ['**/*.html', '!auth/popups/*.html', '!social/standalone-disqus-board/*.html',
-                    '!help/external-iframe/*.html'],
-                dest: '.tmp/app/mandrill-templates.js'
-            }
-        }
-
-    };
-};
-                    </code></pre>
+					<h4>All Node build/integration tools are based on file matching configurations</h4>
+                    <pre>
+                        <code data-trim>
+main: {
+    src: ['app/**/*.ts', 'test/**/*.ts']
+}
+                        </code>
+                    </pre>
 				</section>
 
                 <section>
-                    <h2>Gulp.js</h2>
-                    <pre class="stretch"><code>
-var rename = require("gulp-rename");
-var replace = require('gulp-replace');
-var karma = require('node-karma-wrapper');
-var aKarmaTestServer = karma({ configFile: './test/karma.conf.js'});
-var stylusPlugin = require('gulp-stylus');
-
-gulp.task('copy-config', function () {
-    return gulp.src('src/config.js')
-        .pipe(rename("config.js"))
-        .pipe(replace(/@@appPath/g, '/app'))
-        .pipe(replace(/@@cdnUri/g, 'http://cdn.booktrack.com'))
-        .pipe(replace(/@@version/g, 'dev'))
-        .pipe(gulp.dest('/build'));
-});
-
-gulp.task('compile-stylus-dev', function(){
-    return gulp.src(['src/**/*.styl'])
-        .pipe(watching ? plumber() : gutil.noop())
-        .pipe(stylusPlugin({
-            use: nib(),
-            "include css": true
-        }))
-        .pipe(gulp.dest('/build'));
-});
-
-gulp.task('run-karma', ['copy-config'], function (cb) {
-    aKarmaTestServer.simpleRun(function () {
-        cb();
-    });
-});
-                    </code></pre>
+                    <img src="images/grunt-logo.png">
                 </section>
+                <section>
+                    <img src="images/grunt-setup.png">
+                </section>
+
+                <section>
+                    <h2>Problem?</h2>
+                    <p>Order of tasks execution</p>
+                    FUNNY IMAGE
+                </section>
+
+                <section>
+                    <img src="images/gulp-2x.png">
+                </section>
+
+                <section>
+                    <img src="images/gulp-task.png">
+                </section>
+
+
 
                 <section>
                     <h2>Deployment steps</h2>
