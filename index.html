@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>Continuous Delivery in Booktrack (Richard, what's the proper title)</title>
+		<title>Continuous Delivery in Booktrack</title>
 
 		<meta name="description" content="Using azure it is easy to publish SPA">
 		<meta name="author" content="Konstantin Raev, Richard Sentino">
@@ -15,7 +15,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 		<link rel="stylesheet" href="bower_components/reveal.js/css/reveal.min.css">
-		<link rel="stylesheet" href="bower_components/reveal.js/css/theme/default.css" id="theme">
+		<link rel="stylesheet" href="bower_components/reveal.js/css/theme/sky.css" id="theme">
 
 		<!-- For syntax highlighting -->
 		<link rel="stylesheet" href="bower_components/reveal.js/lib/css/zenburn.css">
@@ -25,37 +25,36 @@
 
 		<div class="reveal">
 			<div class="slides">
-				<section>
-					<h1>Booktrack application structure</h1>
-					<h3>Everything is complex</h3>
+				<section data-background="images/website.png">
+					<h1 style="color: white; background-color: rgba(19, 43, 55, 0.70)">Continuous deployment of a Single Page Application on Azure</h1>
 				</section>
-
                 <section>
-                    <section>
-                        <h1>Booktrack</h1>
-                        <h2>Soundtracks for books www.booktrack.com</h2>
-                        <p>Add material from Paul's presentation</p>
-                        <h3>Presenters</h3>
-                    </section>
-                    <section>
-                        <h3>Front end developers at Booktrack</h3>
-                        <ul>
-                            <li>Konstantin Raev (add photo)</li>
-                            @bestander_nz (add github)
-                            <li>Richard Sentino (add photo)</li>
-                            @rixrix (add github)
-                        </ul>
-                    </section>
+                    <h3>Part of dev team @ Booktrack</h3>
+                    <ul>
+                        <li>
+                            <p><img width="100px" height="100px" src="images/bestander.jpeg"> Konstantin Raev</p>
+                            <p><a href="https://twitter.com/bestander_nz">@bestander_nz</a></p>
+                            <p><a href="https://github.com/bestander">github/bestander</a></p>
+                        </li>
+                        <li>
+                            <p><img width="100px" height="100px" src="images/rixrix.jpeg"> Richard Sentino</p>
+                            <p><a href="https://twitter.com/mindginative">@mindginative</a></p>
+                            <p><a href="https://github.com/rixrix">github/rixrix</a></p>
+                        </li>
+                    </ul>
                 </section>
+                <section data-background="images/platforms.png">
+                </section>
+
 
 				<section>
 					<section>
 						<h2>Our front end stack</h2>
                         <ul>
+                            <li>Angular.js</li>
                             <li>Typescript</li>
                             <li>SASS & Stylus</li>
                             <li>Require.js</li>
-                            <li>Angular.js</li>
                             <li>many more 3rd party libs</li>
                         </ul>
 					</section>
@@ -64,24 +63,35 @@
                         <img src="images/angular_example.png">
                     </section>
                     <section>
-						<h3>Typescript</h3>
-                        <img src="images/typescript_example.png">
+                        <img src="images/anglar-dir-js.png">
+                    </section>
+                    <section>
+                        <h2>Typescript</h2>
+						<h3>A superset of EcmaScript 6 with compile time type checking</h3>
+                        <img class="stretch" src="images/typescript-classes.png">
+					</section>
+                    <section>
+                        <img class="stretch" src="images/typescript-module.png">
+					</section>
+                    <section>
+                        <img class="stretch" src="images/typescript-compiled.png">
 					</section>
                     <section>
 						<h3>Typescript + Angular</h3>
-                        <img src="images/typescrit_angular_webstorm.png">
+                        <img src="images/typescript_angular_webstorm.png">
 					</section>
 					<section>
-						<h2>Stylus</h2>
+						<h3>Stylus</h3>
                         <img src="images/stylus.png">
-					</section>
-					<section>
-						<h2>Require.js & Uglify.js</h2>
-                        <img src="images/require.png">
 					</section>
 				</section>
 
-				<section>
+                <section>
+                    <h2>Optimized for download</h2>
+                    <img src="images/booktrack-min.png">
+                </section>
+
+                <section>
 					<h2>How to compile that?</h2>
                     <p>funny image</p>
 				</section>
