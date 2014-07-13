@@ -101,21 +101,25 @@
                     <section>
                         <h2>Things we do to improve performance</h2>
                         <ul>
+                            <li>Use Content Delivery Network to server files from closest location</li>
                             <li>Reduce download size of scripts, styles and images</li>
                             <li>Bundle multiple files into one</li>
                             <li>Eagerly download only content "above the fold"</li>
                             <li>Use browser cache</li>
-                            <li>Use Content Delivery Network to server files from closest location</li>
                         </ul>
                     </section>
                     <section>
-                        <img src="images/booktrack-download.png">
+                        <img src="images/aws-cloudfron-dyn-cdn.png">
                     </section>
                     <section>
                         <img src="images/booktrack-min.png">
                     </section>
                     <section>
-                        <img src="images/aws-cloudfron-dyn-cdn.png">
+                        <img src="images/booktrack-download.png">
+                    </section>
+                    <section>
+                        <h3>Cache busted</h3>
+                        <img src="images/cache-busting.png">
                     </section>
                 </section>
 
@@ -161,57 +165,33 @@ main: {
                     <img src="images/gulp-task.png">
                 </section>
 
-
+                <section>
+                    <section style="font-weight: 800; color: white; background-color: rgba(10, 10, 10, 0.5)" data-background="images/cartman.jpg">
+                        <h2 style="color: #ffffff">Deployment steps</h2>
+                        <ol>
+                            <li>Compile and minify stuff with Gulp</li>
+                            <li>Put it in the CLOUD</li>
+                            <li>???</li>
+                            <li>PROFIT</li>
+                        </ol>
+                    </section>
+                    <section>
+                        <h3>Microsoft Azure has Node.js SDK</h3>
+                        <img src="images/node-azure.png">
+                    </section>
+                    <section>
+                        <h4>Checkout <a href="https://github.com/bestander/deploy-azure-cdn" target="_blank">github.com/bestander/deploy-azure-cdn</a></h4>
+                        <img src="images/node-azure-deploy.png">
+                    </section>
+                </section>
 
                 <section>
-                    <h2>Deployment steps</h2>
+                    <h2>Final point</h2>
                     <ol>
-                        <li>Compile and minify stuff with Gulp</li>
-                        <li>Put it in a public storage container</li>
-                        <li>Set up CDN to speed up content delivery</li>
-                        <li>???</li>
-                        <li>PROFIT</li>
+                        <li class="fragment roll-in">Organize your project with your favorite preprocessors</li>
+                        <li class="fragment roll-in">Use Node.js CLI to build deployment artifacts</li>
+                        <li class="fragment roll-in">Use Node.js to deploy to CDN</li>
                     </ol>
-                </section>
-
-                <section>
-                    <section>
-                        <h2>Put it in storage and distribute via CDN</h2>
-                        <ul>
-                            <li>Amazon CloudFront</li>
-                            <li>Windows Azure</li>
-                            <li>MaxCDN</li>
-                            <li>Akamai</li>
-                        </ul>
-                    </section>
-
-                    <section>
-                        <h2>We use azure</h2>
-                        <ul>
-                            <li>Already using it for back end</li>
-                            <li>Good pricing</li>
-                            <li>Good performance</li>
-                            <li>Nice Node.js API https://github.com/Azure/azure-sdk-for-node</li>
-                        </ul>
-                    </section>
-
-                    <section>
-                        <h2>Only had to build a Gulp/Grunt plugin for azure blob storage upload</h2>
-                        <p>https://github.com/bestander/grunt-azure-cdn-deploy</p>
-                        <p>https://github.com/bestander/deploy-azure-cdn</p>
-                    </section>
-                </section>
-
-                <section>
-                    <section>
-                        <h2>Importance of CDN</h2>
-                    </section>
-                    <section>
-                        <h2>Importance of Minification of scripts and images</h2>
-                    </section>
-                    <section>
-                        <h2>Importance of GZIP</h2>
-                    </section>
                 </section>
 
                 <section>
@@ -307,41 +287,6 @@ main: {
                     <h2>Thank you!</h2>
                 </section>
 
-				<section id="transitions">
-					<h2>Transition Styles</h2>
-					<p>
-						You can select from different transitions, like: <br>
-						<a href="?transition=cube#/transitions">Cube</a> -
-						<a href="?transition=page#/transitions">Page</a> -
-						<a href="?transition=concave#/transitions">Concave</a> -
-						<a href="?transition=zoom#/transitions">Zoom</a> -
-						<a href="?transition=linear#/transitions">Linear</a> -
-						<a href="?transition=fade#/transitions">Fade</a> -
-						<a href="?transition=none#/transitions">None</a> -
-						<a href="?#/transitions">Default</a>
-					</p>
-				</section>
-
-				<section>
-					<h2>Global State</h2>
-					<p>
-						Set <code>data-state="something"</code> on a slide and <code>"something"</code>
-						will be added as a class to the document element when the slide is open. This lets you
-						apply broader style changes, like switching the background.
-					</p>
-				</section>
-
-				<section data-state="customevent">
-					<h2>Custom Events</h2>
-					<p>
-						Additionally custom events can be triggered on a per slide basis by binding to the <code>data-state</code> name.
-					</p>
-					<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-Reveal.addEventListener( 'customevent', function() {
-	console.log( '"customevent" has fired' );
-} );
-					</code></pre>
-				</section>
 
 				<section>
 					<section data-background="#007777">
@@ -432,14 +377,6 @@ Reveal.addEventListener( 'customevent', function() {
 					<a class="image" href="http://lab.hakim.se/meny/" target="_blank">
 						<img width="320" height="299" src="http://s3.amazonaws.com/hakim-static/portfolio/images/meny.png" alt="Meny">
 					</a>
-				</section>
-
-				<section>
-					<h2>Take a Moment</h2>
-					<p>
-						Press b or period on your keyboard to enter the 'paused' mode. This mode is helpful when you want to take distracting slides off the screen
-						during a presentation.
-					</p>
 				</section>
 
 
