@@ -11,10 +11,10 @@ return gulp.src(['index.html', 'images/**', 'bower_components/**'], {
     containerName: deployContainer,
     serviceOptions: [deployCdnName, deployCdnSecret],
     folder: '',
-    zip: false,
+    zip: true,
     deleteExistingBlobs: true,
     metadata: {
-        cacheControl: 'no-cache' // no cache in browser because this page changes with every release
+        cacheControl: 'public, max-age=600' // cache in browser
         // we'll trust Azure cache heuristics for now for controlling CDN edge cache: http://msdn.microsoft.com/en-us/library/windowsazure/gg680306.aspx
 
     }
