@@ -198,7 +198,7 @@ main: {
                 <section>
                     <section>
                         <h1>Continuous Delivery Pipeline</h1>
-                        <h3>Team - Version Control - Build - Test (automate/manual) - Deployment (dev/production)</h3>
+                        <h4>Team - Version Control - Build - Test - Deployment</h4>
                     </section>
                 </section>
                 <section>
@@ -208,53 +208,48 @@ main: {
                     <section>
                         <p>User Experience</p>
                         <p>User Interface</p>
+                        <p>Testers (external)</p>
                         <p>Dev team (CTO / front-end / back-end / native mobile)</p>
                     </section>
                 </section>
-                    <section>
-                        <h3>Dev Challenges and Opportunities</h3>
-                        <ul>
-                            <li>Challenges:</li>
-                            <li>
-                                <ul>
-                                    <li>Need to support multiple platform/browser</li>
-                                    <li>Managing shared libraries</li>
-                                    <li>Code conflicts</li>
-                                    <li>New product (spin-off)</li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </section>
-                    <section>
-                        <h3>Dev Challenges and Opportunities</h3>
-                        <ul>
-                            <li>Opportunities:</li>
-                            <li>
-                                <ul>
-                                    <li>Speedy decision making</li>
-                                    <li>Moving stuff around is quick</li>
-                                    <li>New technologies are easy to adopt</li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </section>
+                <section>
+                    <h2>Dev Challenges <br />and <br />Opportunities</h2>
+                </section>
+                <section>
+                    <h3>Dev Challenges</h3>
+                    <ul>
+                        <li>Need to support multiple platform/browser</li>
+                        <li>Managing shared libraries</li>
+                        <li>Code conflicts</li>
+                        <li>New product (spin-off)</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Dev Opportunities</h3>
+                    <ul>
+                        <li>Speedy decision making</li>
+                        <li>Moving stuff around is quick</li>
+                        <li>New technologies are easy to adopt</li>
+                    </ul>
+                </section>
                     <section>
                         <h3>Development Setup</h3>
                         <p>
-                            <img src="images/git-logo.png" width="240px">
+                            <img src="images/git-logo.png" width="360px" style="border: none;outline: none;">
+                            <img src="images/nodejs-logo.png" width="300px" style="border: none;outline: none;">
                         </p>
                     </section>
                     <section>
                         <h3>Development Workflow</h3>
-                        <img src="images/gitflow.png" style="background-color: #ffffff">
+                        <img src="images/booktrack-workflow.png" style="background-color: #ffffff; outline: none; border: none;">
                     </section>
                     <section>
-                        <h2>Cont. Improvement</h2>
+                        <h2>Continuous <br />Improvement</h2>
                         <p>pair programming (just started)</p>
                         <p>refactor early, refactor often, small stuff</p>
                     </section>
                     <section>
-                        <h2>Run builds on local machine</h2>
+                        <h2>Run builds <br />on local machine</h2>
                         <p><img src="images/obama-doubt-face.png" style="border: none; outline: none;"></p>
                         <p>really ?</p>
                     </section>
@@ -263,7 +258,7 @@ main: {
                         <p>http://gulpjs.com/</p>
                     </section>
                     <section>
-                        <h2>Run builds on local machine</h2>
+                        <h2>Run builds <br />on local machine</h2>
                         <p>Compile TypeScript</p>
                         <p>Compile Stylus</p>
                         <p>Run tests</p>
@@ -272,14 +267,14 @@ main: {
                         <h3>Best way to check changes ?</h3>
                     </section>
                     <section>
-                        <h3>Working on multiple platforms and browsers</h3>
-                        <p><img src="images/3-screens.jpg" style="border:none;outline: none"></p>
-                        <p>Chrome, Opera, Firefox</p>
-                    </section>
-                    <section>
                         <h3>Best way to check changes ?</h3>
                         <p><img src="images/idea-mrbean.jpg" style="border: none;outline: none;"></p>
                         <p>F5, ctrl + r, ⌘ + r</p>
+                    </section>
+                    <section>
+                        <h3>Working on multiple platforms and browsers</h3>
+                        <p><img src="images/multiple-screens.png" style="border:none;outline: none"></p>
+                        <p>Chrome, Opera, Firefox</p>
                     </section>
                     <section>
                         <h3>There must be a better way</h3>
@@ -293,68 +288,87 @@ main: {
                         </ul>
                     </section>
                     <section>
-                        <h3>Tiny-lr</h3>
+                        <h3>LiveReload (tiny-lr)</h3>
                         <p>
-                            <pre><code>     package.json
-
-                                "dependencies": {
-                                "tiny-lr": "0.0.5"
-                                }</code></pre>
+                            <pre><code>index.html
+    ...
+        &lt;body&gt;
+            <script src="http://localhost:35729/livereload.js"></script>
+        &lt;/body&gt;
+    &lt;/html&gt;</code></pre>
                         </p>
                         <p>
-                            <pre><code>     index.html
-                                ...
-                                &lt;body&gt;
-                                <script src="http://localhost:35729/livereload.js"></script>
-                                &lt;/body&gt;
-                                &lt;/html&gt;</code></pre>
-                        </p>
-                        <p>
-                            <pre><code>     gulp.js
+                            <pre><code>gulp.js
 
-                                1. var tinylr = require('tiny-lr');
-                                2. gulp.task('dev', function(){
-                                3.    var lr = tinylr();
-                                4.    lr.listen(35729);
-                                5.    gulp.watch('/path/to/**/*.js', function(event){
-                                6.        lr.changed({
-                                7.            body: { files: [event.path] }
-                                8.        });
-                                9.    });
-                                10. });</code></pre>
+1. var tinylr = require('tiny-lr');
+2. gulp.task('dev', function(){
+3.    var lr = tinylr();
+4.    lr.listen(35729);
+5.    gulp.watch('/path/to/**/*.js', function(event){
+6.        lr.changed({
+7.            body: { files: [event.path] }
+8.        });
+9.    });
+10. });</code></pre>
                         </p>
                     </section>
                     <section>
-                        <h3>LiveReload in Action</h3>
-                        <p>insert video</p>
+                        <h3>LiveReload Demo</h3>
+                    </section>
+                    <section style="top: -255px !important;">
+                        <video data-autoplay src="images/livereload.mp4"></video>
                     </section>
                 <section>
                     <h3>Testing</h3>
                     <p>
-                        <img src="images/jasmine-test.png" style="background-color: white; width: 245px;">
+                        <img src="images/manual-testing.png" style="border: none;outline: none; width: 200px;">
+                        <img src="images/jasmine-test.png" style="background-color: white; width: 310px; outline: none;border: none;">
                     </p>
                 </section>
                 <section>
-                    <h3>Testing</h3>
-                    <p>Sample Jasmine BDD code</p>
-                    <p><pre><code>1. it("should validate empty first name", () => {
-                    2.    var result:string[] = [];
-                    3.    var csvData: string = "first name, last name, password \n" +
-                    4.    ",Smith,somepassword";
-                    5.
-                    6.    result = this.csvService.parse(csvData);
-                    7.
-                    8.    expect(result.errors[0]).toEqual("There is some data missing in your
-                    file for row(s) [1]. Update the file and upload again.");
-                    9.    expect(result.students.length).toEqual(0);
-                    10. });</code></pre></p>
+                    <h3>Manual Test</h3>
+                    <ul>
+                        <li>Developers</li>
+                        <li>External/3rd party</li>
+                        <li>Sign-off for release</li>
+                        <li>Smoke, Functional testing, etc</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Automated Test</h3>
+                    <ul>
+                        <li>Karma test runner from AngularJS project</li>
+                        <li>- execute test via PhantomJS (headless webkit browser)</li>
+                        <li>only those important functionality</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Sample Test</h3>
+                    <p><pre><code>CSV Import
+
+1. it("should validate empty first name from CSV file", () => {
+2.    var result:string[] = [];
+3.    var csvData: string = "first name, last name, password \n" +
+4.    ",Smith,somepassword";
+5.
+6.    result = this.csvService.parse(csvData);
+7.
+8.    expect(result.errors[0]).toEqual("There is some data missing in your
+            file for row(s) [1]. Update the file and upload again.");
+9.    expect(result.students.length).toEqual(0);
+10. });</code></pre></p>
+                    <p><pre><code>API end point validation
+
+1. it('should validate end point when get("languages") is called',() => {
+2.    $httpBackend.expectGET('/text/languages');
+3. });</code></pre></p>
                 </section>
                 <section>
                     <h3>Continuous Integration</h3>
-                    <p><img src="images/codeship-logo.png" style="width: 450px;"></p>
+                    <p><img src="images/codeship-logo.png" style="width: 450px; border: none;outline: none;"></p>
                 </section>
                 <section>
-                    <h3>CI w/ CodeShip</h3>
+                    <h3>Continuous Integration <br />w/ CodeShip</h3>
                     <p>
                         <img src="images/codeship-databases.png" style="width: 290px;">
                         <img src="images/codeship-languages.png" style="width: 222px;">
@@ -363,20 +377,28 @@ main: {
                 </section>
 
                 <section>
-                    <h2>Importance of Automation</h2>
-                    <p>save time & money</p>
-                    <p>develop more rapidly</p>
-                    <p>reduce integration problems</p>
+                    <h3>Monitoring</h3>
+                    <p>Google Analytics</p>
+                    <p>Optimizely</p>
+                    <p>Any suggestions ?</p>
                 </section>
-
                 <section>
-                    <h2>Summary</h2>
+                    <h2>Final Points</h2>
+                    <ul>
+                        <li>Automation saves time and money</li>
+                        <li>Reduce integration problems</li>
+                        <li>Use liveReload to automate browser refresh</li>
+                        <li>GulpJS for local and remote build</li>
+                        <li>Try Codeship</li>
+                    </ul>
                 </section>
-
                 <section>
                     <h3>OpenSource</h3>
-                    <p>Grab the example from Github</p>
-                    <p>https://github.com/booktrack/continuous-delivery-talk</p>
+                    <ul>
+                        <li>Reveal.js</li>
+                        <li>Grab the example from Github</li>
+                        <li>https://github.com/booktrack/continuous-delivery-talk</li>
+                    </ul>
                 </section>
                 <section>
                     <h2>Thank you!</h2>
