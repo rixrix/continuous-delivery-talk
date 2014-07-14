@@ -194,14 +194,11 @@ main: {
                     </ol>
                 </section>
 
-
-
-
-
+                <!-- CI section -->
                 <section>
                     <section>
                         <h1>Continuous Delivery Pipeline</h1>
-                        <h3>Team - Version Control - Build - Test - CI/Deployment - UAT/QA - Production</h3 >
+                        <h3>Team - Version Control - Build - Test (automate/manual) - Deployment (dev/production)</h3>
                     </section>
                 </section>
                 <section>
@@ -209,12 +206,42 @@ main: {
                         <h1>Team</h1>
                     </section>
                     <section>
-                        <h3>Planning</h3>
                         <p>User Experience</p>
                         <p>User Interface</p>
-                        <p>Dev team (front-end / back-end / mobile)</p>
+                        <p>Dev team (CTO / front-end / back-end / native mobile)</p>
+                    </section>
+                </section>
+                    <section>
+                        <h3>Dev Challenges and Opportunities</h3>
+                        <ul>
+                            <li>Challenges:</li>
+                            <li>
+                                <ul>
+                                    <li>Need to support multiple platform/browser</li>
+                                    <li>Managing shared libraries</li>
+                                    <li>Code conflicts</li>
+                                    <li>New product (spin-off)</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Dev Challenges and Opportunities</h3>
+                        <ul>
+                            <li>Opportunities:</li>
+                            <li>
+                                <ul>
+                                    <li>Speedy decision making</li>
+                                    <li>Moving stuff around is quick</li>
+                                    <li>New technologies are easy to adopt</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Development Setup</h3>
                         <p>
-                            <img src="images/meeting.jpg" height="250px">
+                            <img src="images/git-logo.png" width="240px">
                         </p>
                     </section>
                     <section>
@@ -222,65 +249,124 @@ main: {
                         <img src="images/gitflow.png" style="background-color: #ffffff">
                     </section>
                     <section>
-                        <h2>Cont. Integration on my local</h2>
-                        <p><img src="images/obama-face.png"></p>
+                        <h2>Cont. Improvement</h2>
+                        <p>pair programming (just started)</p>
+                        <p>refactor early, refactor often, small stuff</p>
+                    </section>
+                    <section>
+                        <h2>Run builds on local machine</h2>
+                        <p><img src="images/obama-doubt-face.png" style="border: none; outline: none;"></p>
                         <p>really ?</p>
                     </section>
                     <section>
-                        <h2>Cont. Integration on my local</h2>
+                        <h3><img src="images/gulp.png" style="background-color: transparent;height: 350px; border: none; outline: none;box-shadow: none"></h3>
+                        <p>http://gulpjs.com/</p>
+                    </section>
+                    <section>
+                        <h2>Run builds on local machine</h2>
                         <p>Compile TypeScript</p>
                         <p>Compile Stylus</p>
-                        <p>Run Jasmine/Karma tests</p>
+                        <p>Run tests</p>
                     </section>
+                    <section>
+                        <h3>Best way to check changes ?</h3>
+                    </section>
+                    <section>
+                        <h3>Working on multiple platforms and browsers</h3>
+                        <p><img src="images/3-screens.jpg" style="border:none;outline: none"></p>
+                        <p>Chrome, Opera, Firefox</p>
+                    </section>
+                    <section>
+                        <h3>Best way to check changes ?</h3>
+                        <p><img src="images/idea-mrbean.jpg" style="border: none;outline: none;"></p>
+                        <p>F5, ctrl + r, ⌘ + r</p>
+                    </section>
+                    <section>
+                        <h3>There must be a better way</h3>
+                    </section>
+                    <section>
+                        <h3>LiveReload (tiny-lr)</h3>
+                        <ul>
+                            <li>It will refresh the browser for you</li>
+                            <li>Apply CSS without reloading the page</li>
+                            <li>Suitable for build tools integration</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Tiny-lr</h3>
+                        <p>
+                            <pre><code>     package.json
+
+                                "dependencies": {
+                                "tiny-lr": "0.0.5"
+                                }</code></pre>
+                        </p>
+                        <p>
+                            <pre><code>     index.html
+                                ...
+                                &lt;body&gt;
+                                <script src="http://localhost:35729/livereload.js"></script>
+                                &lt;/body&gt;
+                                &lt;/html&gt;</code></pre>
+                        </p>
+                        <p>
+                            <pre><code>     gulp.js
+
+                                1. var tinylr = require('tiny-lr');
+                                2. gulp.task('dev', function(){
+                                3.    var lr = tinylr();
+                                4.    lr.listen(35729);
+                                5.    gulp.watch('/path/to/**/*.js', function(event){
+                                6.        lr.changed({
+                                7.            body: { files: [event.path] }
+                                8.        });
+                                9.    });
+                                10. });</code></pre>
+                        </p>
+                    </section>
+                    <section>
+                        <h3>LiveReload in Action</h3>
+                        <p>insert video</p>
+                    </section>
+                <section>
+                    <h3>Testing</h3>
+                    <p>
+                        <img src="images/jasmine-test.png" style="background-color: white; width: 245px;">
+                    </p>
+                </section>
+                <section>
+                    <h3>Testing</h3>
+                    <p>Sample Jasmine BDD code</p>
+                    <p><pre><code>1. it("should validate empty first name", () => {
+                    2.    var result:string[] = [];
+                    3.    var csvData: string = "first name, last name, password \n" +
+                    4.    ",Smith,somepassword";
+                    5.
+                    6.    result = this.csvService.parse(csvData);
+                    7.
+                    8.    expect(result.errors[0]).toEqual("There is some data missing in your
+                    file for row(s) [1]. Update the file and upload again.");
+                    9.    expect(result.students.length).toEqual(0);
+                    10. });</code></pre></p>
+                </section>
+                <section>
+                    <h3>Continuous Integration</h3>
+                    <p><img src="images/codeship-logo.png" style="width: 450px;"></p>
+                </section>
+                <section>
+                    <h3>CI w/ CodeShip</h3>
+                    <p>
+                        <img src="images/codeship-databases.png" style="width: 290px;">
+                        <img src="images/codeship-languages.png" style="width: 222px;">
+                    </p>
+                    <p>Setup in minutes</p>
                 </section>
 
-                <section>
-                    <h2>Continuous Integration w/ Codeship.IO</h2>
-                    <ul>
-                        <li>Watches bitbucket repo</li>
-                        <li>Deploy to Dev or Production</li>
-                        <li>Free and paid options</li>
-                    </ul>
-                    <p>add more details here</p>
-                </section>
-                <section>
-                    <h2>Deployment</h2>
-                    <ul>
-                        <li>work on local branch</li>
-                        <li>push to master for QA/Others to test</li>
-                        <li>Master branch > for demo</li>
-                        <li>Production branch > for prod release</li>
-                    </ul>
-                </section>
-                <section>
-                    <h2>Azure</h2>
-                    <ul>
-                        <li>Upload to CDN</li>
-                        <li>No IIS/Apache/Nginx</li>
-                        <li>all assets</li>
-                    </ul>
-                    <p>add more details here</p>
-                </section>
-                <section>
-                    <h2>Azure - Scalability</h2>
-                    <ul>
-                        <li>serve files from the closest location</li>
-                        <li>server locations: asia, uk, us, etc ???</li>
-                    </ul>
-                </section>
-
-                <!-- ending/summary -->
                 <section>
                     <h2>Importance of Automation</h2>
-                    <p>save time</p>
-                    <p>focus on important tasks</p>
-                    <p>faster development</p>
-                </section>
-
-                <section>
-                    <h2>Continuous Improvement</h2>
-                    <p>pair programming</p>
-                    <p>refactor early, refactor often, small stuff</p>
+                    <p>save time & money</p>
+                    <p>develop more rapidly</p>
+                    <p>reduce integration problems</p>
                 </section>
 
                 <section>
@@ -288,101 +374,13 @@ main: {
                 </section>
 
                 <section>
+                    <h3>OpenSource</h3>
+                    <p>Grab the example from Github</p>
+                    <p>https://github.com/booktrack/continuous-delivery-talk</p>
+                </section>
+                <section>
                     <h2>Thank you!</h2>
                 </section>
-
-
-				<section>
-					<section data-background="#007777">
-						<h2>Slide Backgrounds</h2>
-						<p>
-							Set <code>data-background="#007777"</code> on a slide to change the full page background to the given color. All CSS color formats are supported.
-						</p>
-						<a href="#" class="image navigate-down">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-						</a>
-					</section>
-					<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png">
-						<h2>Image Backgrounds</h2>
-						<pre><code>&lt;section data-background="image.png"&gt;</code></pre>
-					</section>
-					<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" data-background-repeat="repeat" data-background-size="100px">
-						<h2>Repeated Image Backgrounds</h2>
-						<pre><code style="word-wrap: break-word;">&lt;section data-background="image.png" data-background-repeat="repeat" data-background-size="100px"&gt;</code></pre>
-					</section>
-				</section>
-
-				<section data-transition="linear" data-background="#4d7e65" data-background-transition="slide">
-					<h2>Background Transitions</h2>
-					<p>
-						Pass reveal.js the <code>backgroundTransition: 'slide'</code> config argument to make backgrounds slide rather than fade.
-					</p>
-				</section>
-
-				<section data-transition="linear" data-background="#8c4738" data-background-transition="slide">
-					<h2>Background Transition Override</h2>
-					<p>
-						You can override background transitions per slide by using <code>data-background-transition="slide"</code>.
-					</p>
-				</section>
-
-				<section>
-					<h2>Clever Quotes</h2>
-					<p>
-						These guys come in two forms, inline: <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						&ldquo;The nice thing about standards is that there are so many to choose from&rdquo;</q> and block:
-					</p>
-					<blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						&ldquo;For years there has been a theory that millions of monkeys typing at random on millions of typewriters would
-						reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.&rdquo;
-					</blockquote>
-				</section>
-
-				<section>
-					<h2>Intergalactic Interconnections</h2>
-					<p>
-						You can link between slides internally,
-						<a href="#/2/3">like this</a>.
-					</p>
-				</section>
-
-				<section>
-					<section id="fragments">
-						<h2>Fragmented Views</h2>
-						<p>Hit the next arrow...</p>
-						<p class="fragment">... to step through ...</p>
-						<ol>
-							<li class="fragment"><code>any type</code></li>
-							<li class="fragment"><em>of view</em></li>
-							<li class="fragment"><strong>fragments</strong></li>
-						</ol>
-
-						<aside class="notes">
-							This slide has fragments which are also stepped through in the notes window.
-						</aside>
-					</section>
-					<section>
-						<h2>Fragment Styles</h2>
-						<p>There's a few styles of fragments, like:</p>
-						<p class="fragment grow">grow</p>
-						<p class="fragment shrink">shrink</p>
-						<p class="fragment roll-in">roll-in</p>
-						<p class="fragment fade-out">fade-out</p>
-						<p class="fragment highlight-red">highlight-red</p>
-						<p class="fragment highlight-green">highlight-green</p>
-						<p class="fragment highlight-blue">highlight-blue</p>
-						<p class="fragment current-visible">current-visible</p>
-						<p class="fragment highlight-current-blue">highlight-current-blue</p>
-					</section>
-				</section>
-
-				<section>
-					<h2>Spectacular image!</h2>
-					<a class="image" href="http://lab.hakim.se/meny/" target="_blank">
-						<img width="320" height="299" src="http://s3.amazonaws.com/hakim-static/portfolio/images/meny.png" alt="Meny">
-					</a>
-				</section>
-
 
 			</div>
 
