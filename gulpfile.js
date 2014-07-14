@@ -1,6 +1,5 @@
 var deployContainer = process.env.DEPLOY_CONTAINER || 'test';
 var deployCdnName = process.env.DEPLOY_AZURE_CDN_NAME;
-var deployCdnUrl = process.env.DEPLOY_AZURE_CDN_URL;
 var deployCdnSecret = process.env.DEPLOY_AZURE_CDN_SECRET;
 
 var gulp = require('gulp');
