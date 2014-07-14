@@ -7,7 +7,7 @@ var gulp = require('gulp');
 var deployCdn = require('deploy-azure-cdn');
 
 gulp.task('deploy',function () {
-return gulp.src(['index.html', 'images/**', 'bower_components'], {
+return gulp.src(['index.html', 'images/**', 'bower_components/**'], {
 }).pipe(deployCdn.gulpPlugin({
     containerName: deployContainer,
     serviceOptions: [deployCdnName, deployCdnSecret],
