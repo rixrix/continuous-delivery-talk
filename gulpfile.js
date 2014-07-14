@@ -20,5 +20,5 @@ return gulp.src(['index.html', 'images/**', 'bower_components'], {
         // we'll trust Azure cache heuristics for now for controlling CDN edge cache: http://msdn.microsoft.com/en-us/library/windowsazure/gg680306.aspx
 
     }
-})).on('error', gutil.log);
+}))
 });
