@@ -14,7 +14,7 @@ return gulp.src(['index.html', 'images/**', 'bower_components/**'], {
     zip: true,
     deleteExistingBlobs: true,
     metadata: {
-        cacheControl: 'public, max-age=600' // cache in browser
+        cacheControl: 'public, max-age=6000' // cache in browser
         // we'll trust Azure cache heuristics for now for controlling CDN edge cache: http://msdn.microsoft.com/en-us/library/windowsazure/gg680306.aspx
 
     }
