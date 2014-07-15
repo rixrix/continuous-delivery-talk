@@ -288,24 +288,24 @@
     <p>
                             <pre><code>index.html
                                 ...
-                                &lt;body&gt;
-                                &lt;script src="http://localhost:35729/livereload.js"&gt;&lt;/script&gt;
-                                &lt;/body&gt;
-                                &lt;/html&gt;</code></pre>
+&lt;body&gt;
+    &lt;script src="http://localhost:35729/livereload.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
     </p>
     <p>
                             <pre><code>gulp.js
 
-                                1. var tinylr = require('tiny-lr');
-                                2. gulp.task('dev', function(){
-                                3. var lr = tinylr();
-                                4. lr.listen(35729);
-                                5. gulp.watch('/path/to/**/*.js', function(event){
-                                6. lr.changed({
-                                7. body: { files: [event.path] }
-                                8. });
-                                9. });
-                                10. });</code></pre>
+1. var tinylr = require('tiny-lr');
+2. gulp.task('dev', function(){
+3.  var lr = tinylr();
+4.  lr.listen(35729);
+5.  gulp.watch('/path/to/**/*.js', function(event){
+6.      lr.changed({
+7.          body: { files: [event.path] }
+8.      });
+9.  });
+10.});</code></pre>
     </p>
 </section>
 <section>
@@ -326,11 +326,11 @@
     <h3>Manual Test</h3>
     <ul>
         <li>Developers</li>
-        <li>External/3rd party</li>
-        <li>Sign-off for release</li>
+        <li>External</li>
         <li>Smoke, Functional testing, etc</li>
     </ul>
 </section>
+
 <section>
     <h3>Automated Test</h3>
     <ul>
@@ -345,26 +345,34 @@
     <p><pre><code>CSV Import
 
     1. it("should validate empty first name from CSV file", () => {
-    2. var result:string[] = [];
-    3. var csvData: string = "first name, last name, password \n" +
-    4. ",Smith,somepassword";
+    2.  var result:string[] = [];
+    3.  var csvData: string = "first name, last name, password \n" +
+    4.  ",Smith,somepassword";
     5.
-    6. result = this.csvService.parse(csvData);
+    6.  result = this.csvService.parse(csvData);
     7.
-    8. expect(result.errors[0]).toEqual("There is some data missing in your
+    8.  expect(result.errors[0]).toEqual("There is some data missing in your
     file for row(s) [1]. Update the file and upload again.");
-    9. expect(result.students.length).toEqual(0);
-    10. });</code></pre>
+    9.  expect(result.students.length).toEqual(0);
+    10.});</code></pre>
     </p>
     <p><pre><code>API end point validation
 
     1. it('should validate end point when get("languages") is called',() => {
-    2. $httpBackend.expectGET('/text/languages');
+    2.      $httpBackend.expectGET('/text/languages');
     3. });</code></pre>
     </p>
 </section>
 <section>
     <h3>Continuous Integration</h3>
+</section>
+<section>
+    <h3>Goodbye Drone.io</h3>
+    <img src="images/drone.png">
+    <p>PROS:</p>
+    <p>Very easy to setup</p>
+    <p>CONS:</p>
+    <p>Not configurable enough</p>
 </section>
 <section>
     <img src="images/codeship-logo.png" style="width: 450px; border: none;outline: none;">
@@ -376,11 +384,8 @@
         <li>Large collection of integrated services eg. Github, AWS, Digital Ocean, Chef, Puppet, Capistrano, Heroku,
             Java, PHP, Rails, Node,js, MySql, PostgreSQL
         </li>
+        <li>More flexibility compared to Drone.io</li>
     </ul>
-</section>
-<section>
-    <h3>Goodbye Drone.io</h3>
-    <img src="images/drone.png">
 </section>
 <section>
     <h3>Codeship Demo</h3>
