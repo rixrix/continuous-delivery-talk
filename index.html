@@ -26,9 +26,9 @@
 <div class="reveal">
 <div class="slides">
 <section data-background="images/website.png">
-    <h1 style="color: white; background-color: rgba(19, 43, 55, 0.70)">Continuous deployment of a Single Page
-        Application on Azure</h1>
+    <h1 style="color: white; background-color: rgba(19, 43, 55, 0.70)">Continuous deployment of a Single Page Application on Azure</h1>
 </section>
+
 <section>
     <h3>Part of dev team @ Booktrack</h3>
     <ul>
@@ -427,6 +427,7 @@
         <li>Reveal.js</li>
         <li>Grab the example from Github</li>
         <li>https://github.com/booktrack/continuous-delivery-talk</li>
+        <li><a href="http://goo.gl/rBKesI">goo.gl/rBKesI</a> - short link for the presentation</li>
     </ul>
 </section>
 <section>
@@ -453,9 +454,11 @@
 
         // Optional libraries used to extend on reveal.js
         dependencies: [
-            { src: 'bower_components/reveal.js/plugin/highlight/highlight.js', async: true, callback: function () {
-                hljs.initHighlightingOnLoad();
-            } },
+            {
+                src: 'bower_components/reveal.js/plugin/highlight/highlight.js', async: true, callback: function () {
+                    hljs.initHighlightingOnLoad();
+                }
+            }
         ]
     });
 
