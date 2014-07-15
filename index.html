@@ -1,434 +1,465 @@
 <!doctype html>
 <html lang="en">
 
-	<head>
-		<meta charset="utf-8">
+<head>
+    <meta charset="utf-8">
 
-		<title>Continuous Delivery in Booktrack</title>
+    <title>Continuous Delivery in Booktrack</title>
 
-		<meta name="description" content="Using azure it is easy to publish SPA">
-		<meta name="author" content="Konstantin Raev, Richard Sentino">
+    <meta name="description" content="Using azure it is easy to publish SPA">
+    <meta name="author" content="Konstantin Raev, Richard Sentino">
 
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="bower_components/reveal.js/css/reveal.min.css">
-		<link rel="stylesheet" href="bower_components/reveal.js/css/theme/sky.css" id="theme">
+    <link rel="stylesheet" href="bower_components/reveal.js/css/reveal.min.css">
+    <link rel="stylesheet" href="bower_components/reveal.js/css/theme/sky.css" id="theme">
 
-		<!-- For syntax highlighting -->
-		<link rel="stylesheet" href="bower_components/reveal.js/lib/css/zenburn.css">
-	</head>
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="bower_components/reveal.js/lib/css/zenburn.css">
+</head>
 
-	<body>
+<body>
 
-		<div class="reveal">
-			<div class="slides">
-				<section data-background="images/website.png">
-					<h1 style="color: white; background-color: rgba(19, 43, 55, 0.70)">Continuous deployment of a Single Page Application on Azure</h1>
-				</section>
-                <section>
-                    <h3>Part of dev team @ Booktrack</h3>
-                    <ul>
-                        <li>
-                            <p><img width="100px" height="100px" src="images/bestander.jpeg"> Konstantin Raev</p>
-                            <p><a href="https://twitter.com/bestander_nz">@bestander_nz</a></p>
-                            <p><a href="https://github.com/bestander">github/bestander</a></p>
-                        </li>
-                        <li>
-                            <p><img width="100px" height="100px" src="images/rixrix.jpeg"> Richard Sentino</p>
-                            <p><a href="https://twitter.com/mindginative">@mindginative</a></p>
-                            <p><a href="https://github.com/rixrix">github/rixrix</a></p>
-                        </li>
-                    </ul>
-                </section>
+<div class="reveal">
+<div class="slides">
+<section data-background="images/website.png">
+    <h1 style="color: white; background-color: rgba(19, 43, 55, 0.70)">Continuous deployment of a Single Page
+        Application on Azure</h1>
+</section>
+<section>
+    <h3>Part of dev team @ Booktrack</h3>
+    <ul>
+        <li>
+            <p><img width="100px" height="100px" src="images/bestander.jpeg"> Konstantin Raev</p>
 
-                <section data-background="images/platforms.png">
-                    <div class="fragment roll-in" style="color: white; background-color: rgba(19, 43, 55, 0.70)">
-                        visit <a style="color: white" target="_blank" href="http://www.booktrack.com">www.booktrack.com</a>
-                        <p><img src="images/hypno.gif"></p>
-                    </div>
-                    <aside class="notes">
-                        We are a startup doing soundtracks for ebooks on the web
-                    </aside>
-                </section>
+            <p><a href="https://twitter.com/bestander_nz">@bestander_nz</a></p>
 
-                <section>
-                    <h2>Our front end stack</h2>
-                    <h4>Defeating complexity with abstractions</h4>
-                    <ul>
-                        <li>Node.js</li>
-                        <li>Angular.js</li>
-                        <li>Typescript</li>
-                        <li>Require.js</li>
-                        <li>Stylus & SASS</li>
-                        <li>Bower</li>
-                        <li>Gulp & Grunt</li>
-                    </ul>
-                    <img src="images/checkhov-jumping.gif">
-                    <aside class="notes">
-                        This is a Continuous delivery talk and not about all the cool tools that you may or may not use.
-                        And what is our goal?
-                    </aside>
-                </section>
+            <p><a href="https://github.com/bestander">github/bestander</a></p>
+        </li>
+        <li>
+            <p><img width="100px" height="100px" src="images/rixrix.jpeg"> Richard Sentino</p>
 
-                <section>
-                    <h4>Bing experiment</h4>
-                    <img src="images/bingdata1.png">
-                    <aside class="notes">
-                        Bing did experiment.
-                        We are as well interested to keep users engaged.
-                    </aside>
-                </section>
+            <p><a href="https://twitter.com/mindginative">@mindginative</a></p>
 
-                <section>
-                    <h3>people who did not even try booktracks</h3>
-                    <img class="stretch" src="images/dropoffs.png">
-                </section>
+            <p><a href="https://github.com/rixrix">github/rixrix</a></p>
+        </li>
+    </ul>
+</section>
 
-                <section>
-                    <h2>Performance matters</h2>
-                    <img src="images/perf-matters.png">
-                    <a href="https://www.youtube.com/watch?v=7ubJzEi3HuA">https://www.youtube.com/watch?v=7ubJzEi3HuA</a>
-                    <aside class="notes">
-                        Performance perceived by a website user is not only back end performance but also the perceived performance on the client side
-                        There are many tools and techniques we are applying in our work to make the website load fast
-                        Here are a few of those that I consider as most important
-                    </aside>
-                </section>
+<section data-background="images/platforms.png">
+    <div class="fragment roll-in" style="color: white; background-color: rgba(19, 43, 55, 0.70)">
+        visit <a style="color: white" target="_blank" href="http://www.booktrack.com">www.booktrack.com</a>
 
-                <section>
-                    <h2>Use Content Delivery Network to serve files from closest location</h2>
-                    <img src="images/aws-cloudfron-dyn-cdn.png">
-                    <aside class="notes">
-                        We use CDN to serve the files from the closest location to the user
-                    </aside>
+        <p><img src="images/hypno.gif"></p>
+    </div>
+    <aside class="notes">
+        We are a startup doing soundtracks for ebooks on the web
+    </aside>
+</section>
 
-                </section>
-                <section>
-                    <img src="images/booktrack-download.png">
-                    <ul>
-                        <li class="fragment roll-in">Reduce download size of scripts, styles and images</li>
-                        <li class="fragment roll-in">Bundle multiple files into one <img src="images/booktrack-min.png"></li>
-                        <li class="fragment roll-in">Prioritize the content download</li>
-                        <li class="fragment roll-in"><img src="images/cache-busting.png"></li>
-                    </ul>
-                </section>
+<section>
+    <h2>Our front end stack</h2>
+    <h4>Defeating complexity with abstractions</h4>
+    <ul>
+        <li>Node.js</li>
+        <li>Angular.js</li>
+        <li>Typescript</li>
+        <li>Require.js</li>
+        <li>Stylus & SASS</li>
+        <li>Bower</li>
+        <li>Gulp & Grunt</li>
+    </ul>
+    <img src="images/checkhov-jumping.gif">
+    <aside class="notes">
+        This is a Continuous delivery talk and not about all the cool tools that you may or may not use.
+        And what is our goal?
+    </aside>
+</section>
 
+<section>
+    <h4>Bing experiment</h4>
+    <img src="images/bingdata1.png">
+    <aside class="notes">
+        Bing did experiment.
+        We are as well interested to keep users engaged.
+    </aside>
+</section>
 
-                <section>
-                    <h2>Not as hard as before</h2>
-                    <img src="images/kirk-what.gif">
-                    <aside class="notes">
-                        It might sound like a lot of work there are tools that make it easier
-                    </aside>
-                </section>
+<section>
+    <h3>people who did not even try booktracks</h3>
+    <img class="stretch" src="images/dropoffs.png">
+</section>
 
-                <section>
-					<h2>Using JavaScript and Node.js as CLI tool</h2>
-                    <aside class="notes">
-                        How many of you use Node?
-                        Recently people started using Node as Command Line automation tool for build automation.
-                    </aside>
+<section>
+    <h2>Performance matters</h2>
+    <img src="images/perf-matters.png">
+    <a href="https://www.youtube.com/watch?v=7ubJzEi3HuA">https://www.youtube.com/watch?v=7ubJzEi3HuA</a>
+    <aside class="notes">
+        Performance perceived by a website user is not only back end performance but also the perceived performance on
+        the client side
+        There are many tools and techniques we are applying in our work to make the website load fast
+        Here are a few of those that I consider as most important
+    </aside>
+</section>
 
-                </section>
+<section>
+    <h2>Use Content Delivery Network to serve files from closest location</h2>
+    <img src="images/aws-cloudfron-dyn-cdn.png">
+    <aside class="notes">
+        We use CDN to serve the files from the closest location to the user
+    </aside>
+
+</section>
+<section>
+    <img src="images/booktrack-download.png">
+    <ul>
+        <li class="fragment roll-in">Reduce download size of scripts, styles and images</li>
+        <li class="fragment roll-in">Bundle multiple files into one <img src="images/booktrack-min.png"></li>
+        <li class="fragment roll-in">Prioritize the content download</li>
+        <li class="fragment roll-in"><img src="images/cache-busting.png"></li>
+    </ul>
+</section>
 
 
-                <section>
-                    <img src="images/grunt-logo.png">
-                </section>
-                <section>
-                    <img src="images/grunt-setup.png">
-                </section>
+<section>
+    <h2>Not as hard as before</h2>
+    <img src="images/kirk-what.gif">
+    <aside class="notes">
+        It might sound like a lot of work there are tools that make it easier
+    </aside>
+</section>
 
-                <section>
-                    <h2>Problem?</h2>
-                    <p>Order of tasks execution</p>
-                    <img src="images/kirk-punch.gif">
-                    <aside class="notes">
-                        The problem that everyone faced with such kind of declarative build process is ordering the tasks that depend on each other.
-                        You had to mix javascript code and configuration objects and it was becoming hard to maintain
-                    </aside>
-                </section>
+<section>
+    <h2>Using JavaScript and Node.js as CLI tool</h2>
+    <aside class="notes">
+        How many of you use Node?
+        Recently people started using Node as Command Line automation tool for build automation.
+    </aside>
 
-                <section>
-                    <img src="images/gulp-2x.png" style="outline: none; border: none;">
-                </section>
+</section>
 
-                <section>
-                    <img src="images/gulp-task.png">
-                </section>
 
-                <section style="font-weight: 800; color: white; background-color: rgba(10, 10, 10, 0.5)" data-background="images/cartman.jpg">
-                    <h2 style="color: #ffffff">Deployment steps</h2>
-                    <ol>
-                        <li>Compile and minify stuff with Gulp</li>
-                        <li>Put it in the Internet</li>
-                        <li>???</li>
-                        <li>PROFIT</li>
-                    </ol>
-                </section>
+<section>
+    <img src="images/grunt-logo.png">
+</section>
+<section>
+    <img src="images/grunt-setup.png">
+</section>
 
-                <section>
-                    <h3>Microsoft Azure</h3>
-                    <img src="images/data-windows.gif">
-                </section>
+<section>
+    <h2>Problem?</h2>
 
-                <section>
-                    <h3>Microsoft Azure has Node.js SDK</h3>
-                    <img src="images/node-azure.png">
-                </section>
-                <section>
-                    <h4>Checkout <a href="https://github.com/bestander/deploy-azure-cdn" target="_blank">github.com/bestander/deploy-azure-cdn</a></h4>
-                    <img src="images/node-azure-deploy.png">
-                </section>
+    <p>Order of tasks execution</p>
+    <img src="images/kirk-punch.gif">
+    <aside class="notes">
+        The problem that everyone faced with such kind of declarative build process is ordering the tasks that depend on
+        each other.
+        You had to mix javascript code and configuration objects and it was becoming hard to maintain
+    </aside>
+</section>
 
-                <section>
-                    <h2>Final point</h2>
-                    <ol>
-                        <li class="fragment roll-in">Organize your project with your favorite preprocessors</li>
-                        <li class="fragment roll-in">Use Node.js CLI to build deployment artifacts</li>
-                        <li class="fragment roll-in">Use Node.js to deploy to CDN</li>
-                    </ol>
-                </section>
+<section>
+    <img src="images/gulp-2x.png" style="outline: none; border: none;">
+</section>
 
-                <!-- CI section -->
-                <section>
-                    <section>
-                        <h1>Continuous Delivery Pipeline</h1>
-                        <h4>Team - Version Control - Build - Test - Deployment</h4>
-                    </section>
-                </section>
-                <section>
-                    <section>
-                        <h1>Team</h1>
-                    </section>
-                    <section>
-                        <p>User Experience</p>
-                        <p>User Interface</p>
-                        <p>Testers (external)</p>
-                        <p>Dev team (CTO / front-end / back-end / native mobile)</p>
-                    </section>
-                </section>
-                <section>
-                    <h2>Dev Challenges <br />and <br />Opportunities</h2>
-                </section>
-                <section>
-                    <h3>Dev Challenges</h3>
-                    <ul>
-                        <li>Need to support multiple platform/browser</li>
-                        <li>Managing shared libraries</li>
-                        <li>Code conflicts</li>
-                        <li>New product (spin-off)</li>
-                    </ul>
-                </section>
-                <section>
-                    <h3>Dev Opportunities</h3>
-                    <ul>
-                        <li>Speedy decision making</li>
-                        <li>Moving stuff around is quick</li>
-                        <li>New technologies are easy to adopt</li>
-                    </ul>
-                </section>
-                    <section>
-                        <h3>Development Setup</h3>
-                        <p>
-                            <img src="images/git-logo.png" width="360px" style="border: none;outline: none;">
-                            <img src="images/nodejs-logo.png" width="300px" style="border: none;outline: none;">
-                        </p>
-                    </section>
-                    <section>
-                        <h3>Development Workflow</h3>
-                        <img src="images/booktrack-workflow.png" style="background-color: #ffffff; outline: none; border: none;">
-                    </section>
-                    <section>
-                        <h2>Continuous Integration <br />on local machine</h2>
-                        <p><img src="images/obama-doubt-face.png" style="border: none; outline: none;width: 500px;"></p>
-                        <p>really ?</p>
-                    </section>
-                    <section>
-                        <h3><img src="images/gulp.png" style="background-color: transparent;height: 350px; border: none; outline: none;box-shadow: none"></h3>
-                        <p>http://gulpjs.com/</p>
-                    </section>
-                    <section>
-                        <h2>Run builds <br />on local machine</h2>
-                        <p>Compile TypeScript</p>
-                        <p>Compile Stylus</p>
-                        <p>Run tests</p>
-                    </section>
-                    <section>
-                        <h3>Best way to check changes ?</h3>
-                    </section>
-                    <section>
-                        <h3>Best way to check changes ?</h3>
-                        <p><img src="images/idea-mrbean.jpg" style="border: none;outline: none;"></p>
-                        <p>F5, ctrl + r, ⌘ + r</p>
-                    </section>
-                    <section>
-                        <h3>Working on multiple platforms and browsers</h3>
-                        <p><img src="images/multiple-screens.png" style="border:none;outline: none"></p>
-                        <p>Chrome, Opera, Firefox</p>
-                    </section>
-                    <section>
-                        <h3>There must be a better way</h3>
-                    </section>
-                    <section>
-                        <h3>LiveReload (tiny-lr)</h3>
-                        <ul>
-                            <li>It will refresh the browser for you</li>
-                            <li>Apply CSS without reloading the page</li>
-                            <li>Suitable for build tools integration</li>
-                        </ul>
-                    </section>
-                    <section>
-                        <h3>LiveReload (tiny-lr)</h3>
-                        <p>
+<section>
+    <img src="images/gulp-task.png">
+</section>
+
+<section style="font-weight: 800; color: white; background-color: rgba(10, 10, 10, 0.5)"
+         data-background="images/cartman.jpg">
+    <h2 style="color: #ffffff">Deployment steps</h2>
+    <ol>
+        <li>Compile and minify stuff with Gulp</li>
+        <li>Put it in the Internet</li>
+        <li>???</li>
+        <li>PROFIT</li>
+    </ol>
+</section>
+
+<section>
+    <h3>Microsoft Azure</h3>
+    <img src="images/data-windows.gif">
+</section>
+
+<section>
+    <h3>Microsoft Azure has Node.js SDK</h3>
+    <img src="images/node-azure.png">
+</section>
+<section>
+    <h4>Checkout <a href="https://github.com/bestander/deploy-azure-cdn" target="_blank">github.com/bestander/deploy-azure-cdn</a>
+    </h4>
+    <img src="images/node-azure-deploy.png">
+</section>
+
+<section>
+    <h2>Final point</h2>
+    <ol>
+        <li class="fragment roll-in">Organize your project with your favorite preprocessors</li>
+        <li class="fragment roll-in">Use Node.js CLI to build deployment artifacts</li>
+        <li class="fragment roll-in">Use Node.js to deploy to CDN</li>
+    </ol>
+</section>
+
+<!-- CI section -->
+<section>
+    <section>
+        <h1>Continuous Delivery Pipeline</h1>
+        <h4>Team - Version Control - Build - Test - Deployment</h4>
+    </section>
+</section>
+<section>
+    <section>
+        <h1>Team</h1>
+    </section>
+    <section>
+        <p>User Experience</p>
+
+        <p>User Interface</p>
+
+        <p>Testers (external)</p>
+
+        <p>Dev team (CTO / front-end / back-end / native mobile)</p>
+    </section>
+</section>
+<section>
+    <h3>Development Setup</h3>
+
+    <p>
+        <img src="images/git-logo.png" width="360px" style="border: none;outline: none;">
+        <img src="images/nodejs-logo.png" width="300px" style="border: none;outline: none;">
+    </p>
+</section>
+<section>
+    <h3>Development Workflow</h3>
+    <img src="images/booktrack-workflow.png" style="background-color: #ffffff; outline: none; border: none;">
+</section>
+<section>
+    <h2>Continuous Integration <br/>on local machine</h2>
+
+    <p><img src="images/obama-doubt-face.png" style="border: none; outline: none;width: 500px;"></p>
+
+    <p>really ?</p>
+</section>
+<section>
+    <h3><img src="images/gulp.png"
+             style="background-color: transparent;height: 350px; border: none; outline: none;box-shadow: none"></h3>
+
+    <p>http://gulpjs.com/</p>
+</section>
+<section>
+    <h2>Run builds <br/>on local machine</h2>
+
+    <p>Compile TypeScript</p>
+
+    <p>Compile Stylus</p>
+
+    <p>Run tests</p>
+</section>
+<section>
+    <h3>Best way to check changes ?</h3>
+</section>
+<section>
+    <h3>Best way to check changes ?</h3>
+
+    <p><img src="images/idea-mrbean.jpg" style="border: none;outline: none;"></p>
+
+    <p>F5, ctrl + r, ⌘ + r</p>
+</section>
+<section>
+    <h3>Working on multiple platforms and browsers</h3>
+
+    <p><img src="images/multiple-screens.png" style="border:none;outline: none"></p>
+
+    <p>Chrome, Opera, Firefox</p>
+</section>
+<section>
+    <h3>There must be a better way</h3>
+</section>
+<section>
+    <h3>LiveReload (tiny-lr)</h3>
+    <ul>
+        <li>It will refresh the browser for you</li>
+        <li>Apply CSS without reloading the page</li>
+        <li>Suitable for build tools integration</li>
+    </ul>
+</section>
+<section>
+    <h3>LiveReload (tiny-lr)</h3>
+
+    <p>
                             <pre><code>index.html
-    ...
-        &lt;body&gt;
-            &lt;script src="http://localhost:35729/livereload.js"&gt;&lt;/script&gt;
-        &lt;/body&gt;
-    &lt;/html&gt;</code></pre>
-                        </p>
-                        <p>
+                                ...
+                                &lt;body&gt;
+                                &lt;script src="http://localhost:35729/livereload.js"&gt;&lt;/script&gt;
+                                &lt;/body&gt;
+                                &lt;/html&gt;</code></pre>
+    </p>
+    <p>
                             <pre><code>gulp.js
 
-1. var tinylr = require('tiny-lr');
-2. gulp.task('dev', function(){
-3.    var lr = tinylr();
-4.    lr.listen(35729);
-5.    gulp.watch('/path/to/**/*.js', function(event){
-6.        lr.changed({
-7.            body: { files: [event.path] }
-8.        });
-9.    });
-10. });</code></pre>
-                        </p>
-                    </section>
-                    <section>
-                        <h3>LiveReload Demo</h3>
-                    </section>
-                    <section style="top: -355px !important;">
-                        <video data-autoplay src="images/livereload.mp4" style="width: 1135px; max-width: none;max-height: none;"></video>
-                    </section>
-                <section>
-                    <h3>Testing</h3>
-                    <p>
-                        <img src="images/manual-testing.png" style="border: none;outline: none; width: 200px;">
-                        <img src="images/jasmine-test.png" style="background-color: white; width: 310px; outline: none;border: none;">
-                    </p>
-                </section>
-                <section>
-                    <h3>Manual Test</h3>
-                    <ul>
-                        <li>Developers</li>
-                        <li>External/3rd party</li>
-                        <li>Sign-off for release</li>
-                        <li>Smoke, Functional testing, etc</li>
-                    </ul>
-                </section>
-                <section>
-                    <h3>Automated Test</h3>
-                    <ul>
-                        <li>Karma test runner from AngularJS project</li>
-                        <li>- execute test via PhantomJS (headless webkit browser)</li>
-                        <li>Only the important features</li>
-                    </ul>
-                </section>
-                <section>
-                    <h3>Sample Test</h3>
-                    <p><pre><code>CSV Import
+                                1. var tinylr = require('tiny-lr');
+                                2. gulp.task('dev', function(){
+                                3. var lr = tinylr();
+                                4. lr.listen(35729);
+                                5. gulp.watch('/path/to/**/*.js', function(event){
+                                6. lr.changed({
+                                7. body: { files: [event.path] }
+                                8. });
+                                9. });
+                                10. });</code></pre>
+    </p>
+</section>
+<section>
+    <h3>LiveReload Demo</h3>
+</section>
+<section style="top: -355px !important;">
+    <video data-autoplay src="images/livereload.mp4" style="width: 1135px; max-width: none;max-height: none;"></video>
+</section>
+<section>
+    <h3>Testing</h3>
 
-1. it("should validate empty first name from CSV file", () => {
-2.    var result:string[] = [];
-3.    var csvData: string = "first name, last name, password \n" +
-4.    ",Smith,somepassword";
-5.
-6.    result = this.csvService.parse(csvData);
-7.
-8.    expect(result.errors[0]).toEqual("There is some data missing in your
-            file for row(s) [1]. Update the file and upload again.");
-9.    expect(result.students.length).toEqual(0);
-10. });</code></pre></p>
-                    <p><pre><code>API end point validation
+    <p>
+        <img src="images/manual-testing.png" style="border: none;outline: none; width: 200px;">
+        <img src="images/jasmine-test.png" style="background-color: white; width: 310px; outline: none;border: none;">
+    </p>
+</section>
+<section>
+    <h3>Manual Test</h3>
+    <ul>
+        <li>Developers</li>
+        <li>External/3rd party</li>
+        <li>Sign-off for release</li>
+        <li>Smoke, Functional testing, etc</li>
+    </ul>
+</section>
+<section>
+    <h3>Automated Test</h3>
+    <ul>
+        <li>Karma test runner from AngularJS project</li>
+        <li>- execute test via PhantomJS (headless webkit browser)</li>
+        <li>Only the important features</li>
+    </ul>
+</section>
+<section>
+    <h3>Sample Test</h3>
 
-1. it('should validate end point when get("languages") is called',() => {
-2.    $httpBackend.expectGET('/text/languages');
-3. });</code></pre></p>
-                </section>
-                <section>
-                    <h3>Continuous Integration</h3>
-                </section>
-                <section>
-                    <img src="images/codeship-logo.png" style="width: 450px; border: none;outline: none;">
-                    <ul>
-                        <li>Hosted continuous integration and deployment software as a service</li>
-                        <li>Maintenance-free</li>
-                        <li>Free and paid version</li>
-                        <li>5-10 minutes investment of your time</li>
-                        <li>Large collection of integrated services eg. Github, AWS, Digital Ocean, Chef, Puppet, Capistrano, Heroku, Java, PHP, Rails, Node,js, MySql, PostgreSQL</li>
-                    </ul>
-                </section>
-                <section>
-                    <h3>Codeship Demo</h3>
-                </section>
-                <section style="top: -355px !important;">
-                    <video data-autoplay src="images/codeship-hd.mp4" style="width: 1135px; max-width: none;max-height: none;"></video>
-                </section>
-                <section>
-                    <h3>Monitoring</h3>
-                    <p>Google Analytics</p>
-                    <p>Optimizely</p>
-                    <p>Any suggestions ?</p>
-                </section>
-                <section>
-                    <h2>Final Points</h2>
-                    <ul>
-                        <li>Automation saves time and money</li>
-                        <li>Reduce integration problems</li>
-                        <li>Use liveReload to automate browser refresh</li>
-                        <li>GulpJS for local and remote build</li>
-                        <li>Try Codeship</li>
-                    </ul>
-                </section>
-                <section>
-                    <h3>OpenSource</h3>
-                    <ul>
-                        <li>Reveal.js</li>
-                        <li>Grab the example from Github</li>
-                        <li>https://github.com/booktrack/continuous-delivery-talk</li>
-                    </ul>
-                </section>
-                <section>
-                    <h2>Thank you!</h2>
-                </section>
-			</div>
-		</div>
+    <p><pre><code>CSV Import
 
-		<script src="bower_components/reveal.js/lib/js/head.min.js"></script>
-		<script src="bower_components/reveal.js/js/reveal.min.js"></script>
+    1. it("should validate empty first name from CSV file", () => {
+    2. var result:string[] = [];
+    3. var csvData: string = "first name, last name, password \n" +
+    4. ",Smith,somepassword";
+    5.
+    6. result = this.csvService.parse(csvData);
+    7.
+    8. expect(result.errors[0]).toEqual("There is some data missing in your
+    file for row(s) [1]. Update the file and upload again.");
+    9. expect(result.students.length).toEqual(0);
+    10. });</code></pre>
+    </p>
+    <p><pre><code>API end point validation
 
-		<script>
+    1. it('should validate end point when get("languages") is called',() => {
+    2. $httpBackend.expectGET('/text/languages');
+    3. });</code></pre>
+    </p>
+</section>
+<section>
+    <h3>Continuous Integration</h3>
+</section>
+<section>
+    <img src="images/codeship-logo.png" style="width: 450px; border: none;outline: none;">
+    <ul>
+        <li>Hosted continuous integration and deployment software as a service</li>
+        <li>Maintenance-free</li>
+        <li>Free and paid version</li>
+        <li>5-10 minutes investment of your time</li>
+        <li>Large collection of integrated services eg. Github, AWS, Digital Ocean, Chef, Puppet, Capistrano, Heroku,
+            Java, PHP, Rails, Node,js, MySql, PostgreSQL
+        </li>
+    </ul>
+</section>
+<section>
+    <h3>Goodbye Drone.io</h3>
+    <img src="images/drone.png">
+</section>
+<section>
+    <h3>Codeship Demo</h3>
+</section>
+<section style="top: -355px !important;">
+    <video data-autoplay src="images/codeship-hd.mp4" style="width: 1135px; max-width: none;max-height: none;"></video>
+</section>
+<section>
+    <h3>Monitoring</h3>
+    <h4>We use</h4>
+    <ul>
+        <li>Azure monitoring</li>
+        <li>Google Analytics</li>
+        <li>Optimizely (AB testing)</li>
+    </ul>
+</section>
+<section>
+    <h3>Monitoring</h3>
+    <h4>Suggestions?</h4>
+    <ul>
+        <li>Segment.io</li>
+        <li>Amplitude</li>
+        <li>MixPanel</li>
+    </ul>
+</section>
+<section>
+    <h2>Final Points</h2>
+    <ul>
+        <li>Automation saves time and money</li>
+        <li>Reduce integration problems</li>
+        <li>Use liveReload to automate browser refresh</li>
+        <li>GulpJS for local and remote build</li>
+        <li>Try Codeship</li>
+    </ul>
+</section>
+<section>
+    <h3>OpenSource</h3>
+    <ul>
+        <li>Reveal.js</li>
+        <li>Grab the example from Github</li>
+        <li>https://github.com/booktrack/continuous-delivery-talk</li>
+    </ul>
+</section>
+<section>
+    <h2>Thank you!</h2>
+</section>
+</div>
+</div>
 
-			// Full list of configuration options available here:
-			// https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				controls: true,
-				progress: true,
-				history: true,
-				center: true,
+<script src="bower_components/reveal.js/lib/js/head.min.js"></script>
+<script src="bower_components/reveal.js/js/reveal.min.js"></script>
 
-				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+<script>
 
-				// Optional libraries used to extend on reveal.js
-				dependencies: [
-					{ src: 'bower_components/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-				]
-			});
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
 
-		</script>
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
 
-	</body>
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+            { src: 'bower_components/reveal.js/plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            } },
+        ]
+    });
+
+</script>
+
+</body>
 </html>
