@@ -45,16 +45,18 @@
                 </section>
 
                 <section data-background="images/platforms.png">
-                </section>
-
-                <section>
-                    <p><img src="images/hypno.gif"></p>
-                    visit <a target="_blank" href="http://www.booktrack.com">www.booktrack.com</a>
+                    <div class="fragment roll-in" style="color: white; background-color: rgba(19, 43, 55, 0.70)">
+                        visit <a style="color: white" target="_blank" href="http://www.booktrack.com">www.booktrack.com</a>
+                        <p><img src="images/hypno.gif"></p>
+                    </div>
+                    <aside class="notes">
+                        We are a startup doing soundtracks for ebooks on the web
+                    </aside>
                 </section>
 
                 <section>
                     <h2>Our front end stack</h2>
-                    <h4>defeating complexity with abstractions</h4>
+                    <h4>Defeating complexity with abstractions</h4>
                     <ul>
                         <li>Node.js</li>
                         <li>Angular.js</li>
@@ -65,26 +67,44 @@
                         <li>Gulp & Grunt</li>
                     </ul>
                     <img src="images/checkhov-jumping.gif">
+                    <aside class="notes">
+                        This is a Continuous delivery talk and not about all the cool tools that you may or may not use.
+                        And what is our goal?
+                    </aside>
                 </section>
 
                 <section>
                     <h4>Bing experiment</h4>
                     <img src="images/bingdata1.png">
+                    <aside class="notes">
+                        Bing did experiment.
+                        We are as well interested to keep users engaged.
+                    </aside>
+                </section>
+
+                <section>
+                    <h3>people who did not even try booktracks</h3>
+                    <img class="stretch" src="images/dropoffs.png">
                 </section>
 
                 <section>
                     <h2>Performance matters</h2>
                     <img src="images/perf-matters.png">
                     <a href="https://www.youtube.com/watch?v=7ubJzEi3HuA">https://www.youtube.com/watch?v=7ubJzEi3HuA</a>
+                    <aside class="notes">
+                        Performance perceived by a website user is not only back end performance but also the perceived performance on the client side
+                        There are many tools and techniques we are applying in our work to make the website load fast
+                        Here are a few of those that I consider as most important
+                    </aside>
                 </section>
 
                 <section>
-                    <h2>Things we do to improve performance</h2>
-                    <img class="stretch" src="images/data-windows.gif">
-                </section>
-                <section>
                     <h2>Use Content Delivery Network to serve files from closest location</h2>
                     <img src="images/aws-cloudfron-dyn-cdn.png">
+                    <aside class="notes">
+                        We use CDN to serve the files from the closest location to the user
+                    </aside>
+
                 </section>
                 <section>
                     <img src="images/booktrack-download.png">
@@ -92,33 +112,28 @@
                         <li class="fragment roll-in">Reduce download size of scripts, styles and images</li>
                         <li class="fragment roll-in">Bundle multiple files into one <img src="images/booktrack-min.png"></li>
                         <li class="fragment roll-in">Prioritize the content download</li>
+                        <li class="fragment roll-in"><img src="images/cache-busting.png"></li>
                     </ul>
                 </section>
-                <section>
-                    <h3>Use browser cache</h3>
-                    <img src="images/cache-busting.png">
-                </section>
+
 
                 <section>
                     <h2>Not as hard as before</h2>
-                    <img class="stretch" src="images/data-fast.gif">
+                    <img src="images/kirk-what.gif">
+                    <aside class="notes">
+                        It might sound like a lot of work there are tools that make it easier
+                    </aside>
                 </section>
 
                 <section>
 					<h2>Using JavaScript and Node.js as CLI tool</h2>
-                    <img src="images/kirk-what.gif">
-				</section>
+                    <aside class="notes">
+                        How many of you use Node?
+                        Recently people started using Node as Command Line automation tool for build automation.
+                    </aside>
 
-				<section>
-					<h4>Node build tools use file matching configurations</h4>
-                    <pre>
-                        <code data-trim>
-main: {
-    src: ['app/**/*.ts', 'test/**/*.ts']
-}
-                        </code>
-                    </pre>
-				</section>
+                </section>
+
 
                 <section>
                     <img src="images/grunt-logo.png">
@@ -131,6 +146,10 @@ main: {
                     <h2>Problem?</h2>
                     <p>Order of tasks execution</p>
                     <img src="images/kirk-punch.gif">
+                    <aside class="notes">
+                        The problem that everyone faced with such kind of declarative build process is ordering the tasks that depend on each other.
+                        You had to mix javascript code and configuration objects and it was becoming hard to maintain
+                    </aside>
                 </section>
 
                 <section>
@@ -145,11 +164,17 @@ main: {
                     <h2 style="color: #ffffff">Deployment steps</h2>
                     <ol>
                         <li>Compile and minify stuff with Gulp</li>
-                        <li>Put it in the CLOUD</li>
+                        <li>Put it in the Internet</li>
                         <li>???</li>
                         <li>PROFIT</li>
                     </ol>
                 </section>
+
+                <section>
+                    <h3>Microsoft Azure</h3>
+                    <img src="images/data-windows.gif">
+                </section>
+
                 <section>
                     <h3>Microsoft Azure has Node.js SDK</h3>
                     <img src="images/node-azure.png">
@@ -396,16 +421,9 @@ main: {
 				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
 				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
 
-				// Parallax scrolling
-				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
-				// parallaxBackgroundSize: '2100px 900px',
-
 				// Optional libraries used to extend on reveal.js
 				dependencies: [
-//					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
 					{ src: 'bower_components/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-//					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-//					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
 				]
 			});
 
