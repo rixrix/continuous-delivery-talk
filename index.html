@@ -267,7 +267,7 @@
 <section>
     <h3>Working on multiple platforms and browsers</h3>
 
-    <p><img src="images/multiple-screens.png" style="border:none;outline: none"></p>
+    <p><img src="images/multiple-screens.png" style="border:none;outline: none; width: 700px;"></p>
 
     <p>Chrome, Opera, Firefox</p>
 </section>
@@ -287,7 +287,7 @@
 
     <p>
                             <pre><code>index.html
-                                ...
+...
 &lt;body&gt;
     &lt;script src="http://localhost:35729/livereload.js"&gt;&lt;/script&gt;
 &lt;/body&gt;
@@ -344,23 +344,23 @@
 
     <p><pre><code>CSV Import
 
-    1. it("should validate empty first name from CSV file", () => {
-    2.  var result:string[] = [];
-    3.  var csvData: string = "first name, last name, password \n" +
-    4.  ",Smith,somepassword";
-    5.
-    6.  result = this.csvService.parse(csvData);
-    7.
-    8.  expect(result.errors[0]).toEqual("There is some data missing in your
-    file for row(s) [1]. Update the file and upload again.");
-    9.  expect(result.students.length).toEqual(0);
-    10.});</code></pre>
+1. it("should validate empty first name from CSV file", () => {
+2.  var result:string[] = [];
+3.  var csvData: string = "first name, last name, password \n" +
+4.  ",Smith,somepassword";
+5.
+6.  result = this.csvService.parse(csvData);
+7.
+8.  expect(result.errors[0]).toEqual("There is some data missing in your
+        file for row(s) [1]. Update the file and upload again.");
+9.  expect(result.students.length).toEqual(0);
+10.});</code></pre>
     </p>
     <p><pre><code>API end point validation
 
-    1. it('should validate end point when get("languages") is called',() => {
-    2.      $httpBackend.expectGET('/text/languages');
-    3. });</code></pre>
+1. it('should validate end point when get("languages") is called',() => {
+2.      $httpBackend.expectGET('/text/languages');
+3. });</code></pre>
     </p>
 </section>
 <section>
@@ -384,7 +384,7 @@
         <li>Large collection of integrated services eg. Github, AWS, Digital Ocean, Chef, Puppet, Capistrano, Heroku,
             Java, PHP, Rails, Node,js, MySql, PostgreSQL
         </li>
-        <li>More flexibility compared to Drone.io</li>
+        <li>Has more flexibility compared to Drone.io</li>
     </ul>
 </section>
 <section>
