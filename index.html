@@ -359,6 +359,7 @@
     <p><pre><code>API end point validation
 
 1. it('should validate end point when get("languages") is called',() => {
+        service.get('languages');
 2.      $httpBackend.expectGET('/text/languages');
 3. });</code></pre>
     </p>
